@@ -15,6 +15,8 @@ namespace SmoreControlLibrary.SMForm
         private SMSystemSet systemSet = null;
         private SMCountSet countSet = null;
         private SMLightSet lightSet = null;
+        private SMPLCSet PlcSet = null;
+        private SMCamSet CamSet;
         private SMProductInfoSet productInfoSet = null;
         private SMSaveSet saveSet = null;
         private SMThresholdSet thresholdSet = null;
@@ -47,13 +49,17 @@ namespace SmoreControlLibrary.SMForm
         private void buttonThresholdSet_Click(object sender, EventArgs e)
         {
             DisplayButton(buttonThresholdSet, m_listButton);
-            ShowUserControl(thresholdSet);
+            //ShowUserControl(thresholdSet);
+            ShowUserControl(CamSet);
         }
 
         private void buttonLightSet_Click(object sender, EventArgs e)
         {
+            //DisplayButton(buttonLightSet, m_listButton);
+            //ShowUserControl(lightSet);
+
             DisplayButton(buttonLightSet, m_listButton);
-            ShowUserControl(lightSet);
+            ShowUserControl(PlcSet);
         }
 
         private void buttonProductInfoSet_Click(object sender, EventArgs e)
@@ -73,6 +79,8 @@ namespace SmoreControlLibrary.SMForm
             systemSet = new SMSystemSet();
             countSet = new SMCountSet();
             lightSet = new SMLightSet();
+            PlcSet = new SMPLCSet();
+            CamSet = new SMCamSet();
             productInfoSet = new SMProductInfoSet();
             saveSet = new SMSaveSet();
             thresholdSet = new SMThresholdSet();
@@ -82,7 +90,10 @@ namespace SmoreControlLibrary.SMForm
 
             m_listUserControl.Add(systemSet);
             m_listUserControl.Add(countSet);
-            m_listUserControl.Add(lightSet);
+            //m_listUserControl.Add(lightSet);
+            m_listUserControl.Add(PlcSet);
+            m_listUserControl.Add(CamSet);
+            
             m_listUserControl.Add(productInfoSet);
             m_listUserControl.Add(saveSet);
             m_listUserControl.Add(thresholdSet);

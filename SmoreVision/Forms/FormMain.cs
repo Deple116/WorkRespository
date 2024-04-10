@@ -208,40 +208,6 @@ namespace SmoreVision
             //相机初始化
             //InitCam();
 
-
-            ////IO初始化
-            //if(!iOControlClass.Init("192.168.0.80","10123"))
-            //{
-            //    Log.Add($"IO初始化初始化失败!", Color.Red, bshow: true);
-            //    SMFormWelcom.LoadingMsg("IO初始化初始化失败", 90);
-            //}
-            //else
-            //{
-            //    Log.Add($"IO初始化初始化成功!", Color.Green, bshow: true);
-            //    SMFormWelcom.LoadingMsg("IO初始化初始化成功", 90);
-            //}
-
-            ////产品型号
-            ////Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory + "\\Model\\productModel.csv");
-            //CSV.Instance[0].Read(AppDomain.CurrentDomain.BaseDirectory + "\\Model\\productModel.csv");
-            //int index=CSV.Instance[0].Data.FindIndex(r => r.Contains($"{XMLConfig.Device.Items[0].ProductModel}"));
-            ////加载产品组别
-            //if(index!=-1) CSV.Instance[1].Read(AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{CSV.Instance[0].Data[index][1]}.csv");
-
-            ////产品组别
-            //if (CSV.Instance[1].Data.Count < int.Parse(XMLConfig.Device.Items[0].EquipmentNumber))
-            //{
-            //    MessageBox.Show("超过产品组别最大数");
-            //    SMLogWindow.OutLog($"超过产品组别最大数:Count:{CSV.Instance[1].Data.Count}:EquipmentNumber:{XMLConfig.Device.Items[0].EquipmentNumber}",Color.Red);
-            //    return;
-            //}
-            //List<string> m_list = CSV.Instance[1].Data[int.Parse(XMLConfig.Device.Items[0].EquipmentNumber)];
-            //string resText = m_list[2] + m_list[1] + DateTime.Now.ToString("MMdd") + m_list[3];
-            //smInfoWindow1.EquipmentNumber = XMLConfig.Device.Items[0].EquipmentNumber + ";" + resText;
-
-
-
-
             //plc初始化
             //returnValue = m_SiemensPLCControl.Initial();
             //if (returnValue != ERROR_OK)

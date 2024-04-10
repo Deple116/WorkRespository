@@ -53,6 +53,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HslCommunication, Version=10.6.1.0, Culture=neutral, PublicKeyToken=3d72ad3b6b5ec0e3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DLL\HslCommunication.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\DLL\LogHelper\log4net.dll</HintPath>
     </Reference>
@@ -125,6 +129,7 @@
     <Compile Include="ProductStatistics\SingleShow.Designer.cs">
       <DependentUpon>SingleShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="SiemensPLCControl.cs" />
     <Compile Include="SMButton\SMButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,6 +226,12 @@
     <Compile Include="SMForm\FormSet.Designer.cs">
       <DependentUpon>FormSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="SMForm\SMCamSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SMForm\SMCamSet.Designer.cs">
+      <DependentUpon>SMCamSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="SMForm\SMCountSet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -238,6 +249,12 @@
     </Compile>
     <Compile Include="SMForm\SMLightSet.Designer.cs">
       <DependentUpon>SMLightSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SMForm\SMPLCSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SMForm\SMPLCSet.Designer.cs">
+      <DependentUpon>SMPLCSet.cs</DependentUpon>
     </Compile>
     <Compile Include="SMForm\SMProductInfo.cs">
       <SubType>UserControl</SubType>
@@ -268,6 +285,12 @@
     </Compile>
     <Compile Include="SMForm\SMThresholdSet.Designer.cs">
       <DependentUpon>SMThresholdSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SMForm\TextTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SMForm\TextTable.Designer.cs">
+      <DependentUpon>TextTable.cs</DependentUpon>
     </Compile>
     <Compile Include="SMForm\UserPasswordParse.cs" />
     <Compile Include="SMImage\CLSDataParse.cs" />
@@ -379,6 +402,9 @@
     <EmbeddedResource Include="SMForm\FormSet.resx">
       <DependentUpon>FormSet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SMForm\SMCamSet.resx">
+      <DependentUpon>SMCamSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SMForm\SMCountSet.resx">
       <DependentUpon>SMCountSet.cs</DependentUpon>
     </EmbeddedResource>
@@ -387,6 +413,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SMForm\SMLightSet.resx">
       <DependentUpon>SMLightSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SMForm\SMPLCSet.resx">
+      <DependentUpon>SMPLCSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SMForm\SMProductInfo.resx">
       <DependentUpon>SMProductInfo.cs</DependentUpon>
@@ -402,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SMForm\SMThresholdSet.resx">
       <DependentUpon>SMThresholdSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SMForm\TextTable.resx">
+      <DependentUpon>TextTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SMImage\SMImageWindow.resx">
       <DependentUpon>SMImageWindow.cs</DependentUpon>

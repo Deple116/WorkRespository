@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelHead = new System.Windows.Forms.Panel();
+            this.lbl = new System.Windows.Forms.Label();
             this.smButton2 = new SmoreControlLibrary.SMButton();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.buttonCountSet = new System.Windows.Forms.Button();
@@ -38,7 +39,6 @@
             this.buttonSaveSet = new System.Windows.Forms.Button();
             this.buttonSystemSet = new System.Windows.Forms.Button();
             this.panelFormSetHome = new System.Windows.Forms.Panel();
-            this.lbl = new System.Windows.Forms.Label();
             this.panelHead.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.SuspendLayout();
@@ -54,9 +54,24 @@
             this.panelHead.Size = new System.Drawing.Size(1030, 31);
             this.panelHead.TabIndex = 0;
             // 
+            // lbl
+            // 
+            this.lbl.BackColor = System.Drawing.Color.Transparent;
+            this.lbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbl.ForeColor = System.Drawing.Color.Black;
+            this.lbl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl.Location = new System.Drawing.Point(0, 0);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(998, 31);
+            this.lbl.TabIndex = 4;
+            this.lbl.Text = "设置";
+            this.lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // smButton2
             // 
             this.smButton2.BackColor = System.Drawing.Color.Transparent;
+            this.smButton2.BackColorShow = false;
             this.smButton2.BtnBackColor = System.Drawing.Color.Transparent;
             this.smButton2.BtnFont = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.smButton2.BtnForeColor = System.Drawing.Color.Black;
@@ -69,6 +84,7 @@
             this.smButton2.IsShowRect = false;
             this.smButton2.IsShowTips = false;
             this.smButton2.Location = new System.Drawing.Point(998, 0);
+            this.smButton2.MouseUpColor = System.Drawing.Color.Empty;
             this.smButton2.Name = "smButton2";
             this.smButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.smButton2.RectWidth = 1;
@@ -140,7 +156,7 @@
             this.buttonLightSet.Name = "buttonLightSet";
             this.buttonLightSet.Size = new System.Drawing.Size(127, 35);
             this.buttonLightSet.TabIndex = 6;
-            this.buttonLightSet.Text = "光源设置";
+            this.buttonLightSet.Text = "PLC设置";
             this.buttonLightSet.UseVisualStyleBackColor = false;
             this.buttonLightSet.Click += new System.EventHandler(this.buttonLightSet_Click);
             // 
@@ -157,7 +173,7 @@
             this.buttonThresholdSet.Name = "buttonThresholdSet";
             this.buttonThresholdSet.Size = new System.Drawing.Size(127, 35);
             this.buttonThresholdSet.TabIndex = 5;
-            this.buttonThresholdSet.Text = "阈值设置";
+            this.buttonThresholdSet.Text = "相机设置";
             this.buttonThresholdSet.UseVisualStyleBackColor = false;
             this.buttonThresholdSet.Click += new System.EventHandler(this.buttonThresholdSet_Click);
             // 
@@ -203,20 +219,6 @@
             this.panelFormSetHome.Name = "panelFormSetHome";
             this.panelFormSetHome.Size = new System.Drawing.Size(903, 651);
             this.panelFormSetHome.TabIndex = 2;
-            // 
-            // lbl
-            // 
-            this.lbl.BackColor = System.Drawing.Color.Transparent;
-            this.lbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbl.ForeColor = System.Drawing.Color.Black;
-            this.lbl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl.Location = new System.Drawing.Point(0, 0);
-            this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(998, 31);
-            this.lbl.TabIndex = 4;
-            this.lbl.Text = "设置";
-            this.lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormSet
             // 

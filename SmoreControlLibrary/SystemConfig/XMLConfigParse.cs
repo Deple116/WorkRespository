@@ -30,6 +30,26 @@ namespace SmoreControlLibrary
                 NodeDictionary.Add("System", systemNode);
 			}
 
+            if (Camera != null)
+            {
+                int CameraItemCount = Camera.Items.Length;
+                if (CameraItemCount > 0)
+                {
+                    Dictionary<string, string>[] cameraNode = new Dictionary<string, string>[CameraItemCount];
+
+                    for (int i = 0; i < CameraItemCount; i++)
+                    {
+                        string itemName = $"Camera.Items[{i}]";
+                        cameraNode[i] = new Dictionary<string, string>();
+                        cameraNode[i].Add($"{itemName}.Name", Camera.Items[i].Name);
+                        cameraNode[i].Add($"{itemName}.Value", Camera.Items[i].Value);
+                        
+                        NodeDictionary.Add(itemName, cameraNode[i]);
+                    }
+                }
+            }
+
+
             if (PLC != null)
             {
                 Dictionary<string, string> plcNode = new Dictionary<string, string>();
@@ -38,6 +58,22 @@ namespace SmoreControlLibrary
                 plcNode.Add("Slot",PLC.Slot.ToString());
                 plcNode.Add("Rack",PLC.Rack.ToString());
                 NodeDictionary.Add("PLC", plcNode);
+
+                int PLCItemCount = PLC.Items.Length;
+                if (PLCItemCount > 0)
+                {
+                    Dictionary<string, string>[] PLCNode = new Dictionary<string, string>[PLCItemCount];
+
+                    for (int i = 0; i < PLCItemCount; i++)
+                    {
+                        string itemName = $"PLC.Items[{i}]";
+                        PLCNode[i] = new Dictionary<string, string>();
+                        PLCNode[i].Add($"{itemName}.Name", PLC.Items[i].Name);
+                        PLCNode[i].Add($"{itemName}.Adress", PLC.Items[i].Adress);
+                        PLCNode[i].Add($"{itemName}.Value", PLC.Items[i].Value);
+                        NodeDictionary.Add(itemName, PLCNode[i]);
+                    }
+                }
             }
 
             if (SaveImage != null)
@@ -107,6 +143,9 @@ namespace SmoreControlLibrary
 
 		[XmlElement("System")]
 		public SystemElement System { get; set;}
+        [XmlElement("Camera")]
+        public CameraElement Camera { get; set; }
+
         [XmlElement("PLC")]
         public PLCElement PLC { get; set;}
         [XmlElement("SaveImage")]
@@ -126,6 +165,25 @@ namespace SmoreControlLibrary
 			public bool FullScreen { get; set;}
         }
 
+
+        [XmlType("Camera")]
+        public class CameraElement
+        {
+            [XmlElement("Item")]
+            public CameraItem[] Items { get; set; }
+        }
+
+        [XmlType("CameraItem")]
+        public class CameraItem
+        {
+            [XmlAttribute("Name")]
+            public string Name { get; set; }
+            [XmlAttribute("Value")]
+            public string Value { get; set; }
+            
+        }
+
+
         [XmlType("PLC")]  
         public class PLCElement
         {
@@ -137,6 +195,20 @@ namespace SmoreControlLibrary
             public short Slot { get; set;}
             [XmlElement("Rack")]
             public short Rack { get; set;}
+            [XmlElement("Item")]
+            public PLCItem[] Items { get; set; }
+        }
+
+        [XmlType("PLCItem")]
+        public class PLCItem
+        {
+            [XmlAttribute("Name")]
+            public string Name { get; set; }
+            [XmlAttribute("Adress")]
+            public string Adress { get; set; }
+            [XmlAttribute("Value")]
+            public string Value { get; set; }
+
         }
 
         [XmlType("SaveImage")]
