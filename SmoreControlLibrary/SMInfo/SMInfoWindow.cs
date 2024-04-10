@@ -28,7 +28,6 @@ namespace SmoreControlLibrary.SMInfo
         public string BatchNumber;
     }
 
-
     public partial class SMInfoWindow : UserControl
     {
         #region property

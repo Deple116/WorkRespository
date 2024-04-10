@@ -11,7 +11,7 @@ namespace SmoreVision
 {
     public class GlobalVariables
     {
-        //deple 12345
+        //deple20240410
         public static class GConst
         {
             //工位数量
@@ -19,7 +19,6 @@ namespace SmoreVision
             public const int IMAGE_WINDOW_COUNT = 2;
 
             public const string IMAGE_SAVE_BASE_TIME_FORMAT = "HHmmss";
-
            
         }
 
@@ -34,7 +33,6 @@ namespace SmoreVision
 
             public static string strCurrModel;
             public static string PlcResult;
-
         }
 
 

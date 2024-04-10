@@ -329,7 +329,6 @@ namespace SmoreVision
             SMFormWelcom.LoadingMsg("初始化成功", 100);
 
         }
-
         private void InitUI()
         {
             tabControl1.SelectedIndex = 2;
