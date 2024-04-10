@@ -11,6 +11,7 @@ namespace SmoreVision
 {
     public class GlobalVariables
     {
+        //deple 
         public static class GConst
         {
             //工位数量
