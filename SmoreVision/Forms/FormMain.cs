@@ -314,6 +314,7 @@ namespace SmoreVision
             smShowData.Show();
             if (smShowData != null)
             {
+
                 //smShowData.changeControl(GlobalVariables.Variable.uShowCount);
                 smShowData.changeControl(111);
                 tabControl1.SelectedIndex = 1;
@@ -1061,25 +1062,25 @@ namespace SmoreVision
 
         private void ProductRecive1(ProductInfo proinfo)
         {
-            SMLogWindow.OutLog($"Model:{proinfo.Product_Model};Content:{proinfo.Product_content}.", Color.Green);
+            //SMLogWindow.OutLog($"Model:{proinfo.Product_Model};Content:{proinfo.Product_content}.", Color.Green);
 
-            //组别
-            XMLConfig.Device.Items[0].EquipmentNumber = proinfo.Product_content;
+            ////组别
+            //XMLConfig.Device.Items[0].EquipmentNumber = proinfo.Product_content;
 
-            if (CSV.Instance[1].Data.Count > int.Parse(XMLConfig.Device.Items[0].EquipmentNumber))
-            {
-                List<string> m_list = CSV.Instance[1].Data[int.Parse(XMLConfig.Device.Items[0].EquipmentNumber)];
-                string resText = m_list[2] + m_list[1] + DateTime.Now.ToString("MMdd") + m_list[3];
-                SMLogWindow.OutLog($"resText:{resText}", Color.Green);
+            //if (CSV.Instance[1].Data.Count > int.Parse(XMLConfig.Device.Items[0].EquipmentNumber))
+            //{
+            //    List<string> m_list = CSV.Instance[1].Data[int.Parse(XMLConfig.Device.Items[0].EquipmentNumber)];
+            //    string resText = m_list[2] + m_list[1] + DateTime.Now.ToString("MMdd") + m_list[3];
+            //    SMLogWindow.OutLog($"resText:{resText}", Color.Green);
 
-                //smInfoWindow1.EquipmentNumber = XMLConfig.Device.Items[0].EquipmentNumber + ";" + resText;
-            }
-            else
-            {
-                SMLogWindow.OutLog($"当前组别索引:{int.Parse(XMLConfig.Device.Items[0].EquipmentNumber)};最大索引:{CSV.Instance[1].Data.Count}", Color.Red);
-                XMLConfig.Device.Items[0].EquipmentNumber = "0";
-                //smInfoWindow1.EquipmentNumber = "null";
-            }
+            //    //smInfoWindow1.EquipmentNumber = XMLConfig.Device.Items[0].EquipmentNumber + ";" + resText;
+            //}
+            //else
+            //{
+            //    SMLogWindow.OutLog($"当前组别索引:{int.Parse(XMLConfig.Device.Items[0].EquipmentNumber)};最大索引:{CSV.Instance[1].Data.Count}", Color.Red);
+            //    XMLConfig.Device.Items[0].EquipmentNumber = "0";
+            //    //smInfoWindow1.EquipmentNumber = "null";
+            //}
 
 
 
@@ -1087,26 +1088,26 @@ namespace SmoreVision
 
         private void ProductRecive2(ProductInfo proinfo)
         {
-            SMLogWindow.OutLog($"Model:{proinfo.Product_Model};Content:{proinfo.Product_content}.", Color.Green);
+            //SMLogWindow.OutLog($"Model:{proinfo.Product_Model};Content:{proinfo.Product_content}.", Color.Green);
 
-            //型号信息
-            string Temp = proinfo.Product_Model;
-            SMLogWindow.OutLog($"Model:{Temp}", Color.Green);
-            XMLConfig.Device.Items[0].ProductModel = Temp;
-            smInfoWindow1.ProductModel = XMLConfig.Device.Items[0].ProductModel;
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv"))
-            {
-                //加载产品组别
-                CSV.Instance[1].Read(AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv");
-                SMLogWindow.OutLog($"加载{AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv"}刻字信息成功", Color.Green);
-                XMLConfig.Device.Items[0].EquipmentNumber = "0";
-                //smInfoWindow1.EquipmentNumber = "null";
-            }
-            else
-            {
-                MessageBox.Show($"不存在{Temp}刻字信息");
-                SMLogWindow.OutLog($"不存在{Temp}刻字信息", Color.Red);
-            }
+            ////型号信息
+            //string Temp = proinfo.Product_Model;
+            //SMLogWindow.OutLog($"Model:{Temp}", Color.Green);
+            //XMLConfig.Device.Items[0].ProductModel = Temp;
+            //smInfoWindow1.ProductModel = XMLConfig.Device.Items[0].ProductModel;
+            //if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv"))
+            //{
+            //    //加载产品组别
+            //    CSV.Instance[1].Read(AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv");
+            //    SMLogWindow.OutLog($"加载{AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv"}刻字信息成功", Color.Green);
+            //    XMLConfig.Device.Items[0].EquipmentNumber = "0";
+            //    //smInfoWindow1.EquipmentNumber = "null";
+            //}
+            //else
+            //{
+            //    MessageBox.Show($"不存在{Temp}刻字信息");
+            //    SMLogWindow.OutLog($"不存在{Temp}刻字信息", Color.Red);
+            //}
 
         }
 
@@ -1217,13 +1218,13 @@ namespace SmoreVision
             switch (idname)
             {
                 case IDName.Operator:
-                    smInfoWindow1.ModelDate = "操作员";                  
+                    smInfoWindow1.CurrUser = "操作员";                  
                     break;
                 case IDName.Engineer:
-                    smInfoWindow1.ModelDate = "工程师";                   
+                    smInfoWindow1.CurrUser = "工程师";                   
                     break;
                 case IDName.Admin:                 
-                    smInfoWindow1.ModelDate = "管理员";
+                    smInfoWindow1.CurrUser = "管理员";
                    
                     break;
             }

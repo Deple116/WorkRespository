@@ -15,9 +15,9 @@ namespace SmoreControlLibrary.SMInfo
     public partial class FormChangeInfo : Form
     {
 
-        public string Batch { get; set; }
-        public string ProductModel { get; set; }
-        public string ProductGroup { get; set; }
+        public string DetectDate { get; set; }
+        public string ProjName { get; set; }
+        public string ProductName { get; set; }
 
         public bool CHANGE { get; set; }
 
@@ -51,9 +51,9 @@ namespace SmoreControlLibrary.SMInfo
             }
 
             CHANGE = true;
-            ProductModel = temp1;
-            ProductGroup = temp2;
-            Batch = temp3;
+            //ProductModel = temp1;
+            //ProductGroup = temp2;
+            //Batch = temp3;
 
 
             this.Close();
@@ -67,8 +67,8 @@ namespace SmoreControlLibrary.SMInfo
         private void FormChangeInfo_Load(object sender, EventArgs e)
         {
             //comboBox1.Text = ProductModel;
-            comboBox3.Text = Batch;
-            comboBox2.Text = ProductGroup;
+            //comboBox3.Text = Batch;
+            //comboBox2.Text = ProductGroup;
         }
 
         public void AddItems(List<FileInfo> list)
@@ -91,11 +91,11 @@ namespace SmoreControlLibrary.SMInfo
             bool bCheck = false;
             for (int i = 0; i <= comboBox1.Items.Count - 1; i++)
             {
-                if (ProductModel == comboBox1.Items[i].ToString())
-                {
-                    comboBox1.SelectedIndex = i;
-                    bCheck = true;
-                }  
+                //if (ProductModel == comboBox1.Items[i].ToString())
+                //{
+                //    comboBox1.SelectedIndex = i;
+                //    bCheck = true;
+                //}  
             }
 
             if(!bCheck) comboBox1.SelectedIndex = 0;

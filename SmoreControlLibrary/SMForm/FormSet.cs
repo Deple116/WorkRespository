@@ -16,7 +16,8 @@ namespace SmoreControlLibrary.SMForm
         private SMCountSet countSet = null;
         private SMLightSet lightSet = null;
         private SMPLCSet PlcSet = null;
-        private SMCamSet CamSet;
+        private SMCamSet CamSet=null;
+        private SMDeviceSet DeviceSet = null;
         private SMProductInfoSet productInfoSet = null;
         private SMSaveSet saveSet = null;
         private SMThresholdSet thresholdSet = null;
@@ -65,7 +66,8 @@ namespace SmoreControlLibrary.SMForm
         private void buttonProductInfoSet_Click(object sender, EventArgs e)
         {
             DisplayButton(buttonProductInfoSet, m_listButton);
-            ShowUserControl(productInfoSet);
+            //ShowUserControl(productInfoSet);
+            ShowUserControl(DeviceSet);
         }
 
         private void buttonCountSet_Click(object sender, EventArgs e)
@@ -82,7 +84,8 @@ namespace SmoreControlLibrary.SMForm
             PlcSet = new SMPLCSet();
             CamSet = new SMCamSet();
             productInfoSet = new SMProductInfoSet();
-            saveSet = new SMSaveSet();
+            DeviceSet = new SMDeviceSet();
+          saveSet = new SMSaveSet();
             thresholdSet = new SMThresholdSet();
 
             m_listUserControl = new List<UserControl>();
@@ -94,7 +97,8 @@ namespace SmoreControlLibrary.SMForm
             m_listUserControl.Add(PlcSet);
             m_listUserControl.Add(CamSet);
             
-            m_listUserControl.Add(productInfoSet);
+            //m_listUserControl.Add(productInfoSet);
+            m_listUserControl.Add(DeviceSet); 
             m_listUserControl.Add(saveSet);
             m_listUserControl.Add(thresholdSet);
 

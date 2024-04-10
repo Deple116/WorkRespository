@@ -139,7 +139,7 @@
             this.buttonProductInfoSet.Name = "buttonProductInfoSet";
             this.buttonProductInfoSet.Size = new System.Drawing.Size(127, 35);
             this.buttonProductInfoSet.TabIndex = 7;
-            this.buttonProductInfoSet.Text = "物料信息";
+            this.buttonProductInfoSet.Text = "设备信息";
             this.buttonProductInfoSet.UseVisualStyleBackColor = false;
             this.buttonProductInfoSet.Click += new System.EventHandler(this.buttonProductInfoSet_Click);
             // 

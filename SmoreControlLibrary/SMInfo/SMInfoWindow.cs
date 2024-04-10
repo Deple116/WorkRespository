@@ -31,45 +31,53 @@ namespace SmoreControlLibrary.SMInfo
     public partial class SMInfoWindow : UserControl
     {
         #region property
-        private string _productModel;
-        [Category("SmoreControl"),Description("产品型号")]
-        public string ProductModel
+        private string _projname;
+        [Category("SmoreControl"),Description("项目名称")]
+        public string ProjName
         {
-            get { return _productModel; }
-            set { _productModel = value; this.lbProductModel.Text =$"  产品型号：{value}";}
+            get { return _projname; }
+            set { _projname = value; this.lbProjName.Text =$"  项目名称：{value}";}
         }
 
-        private string _equipmentNumber;
-        [Category("SmoreControl"), Description("产品组别")]
-        //public string EquipmentNumber
-        //{
-        //    get { return _equipmentNumber; }
-        //    set { _equipmentNumber = value; this.lbEquipmentNumber.Text = $"  产品组别：{value}"; }
-        //}
-
-        private string _modelVersion;
-        [Category("SmoreControl"), Description("模型版本")]
-        public string ModelVersion
+        private string _productname;
+        [Category("SmoreControl"), Description("产品名称")]
+        public string ProductName
         {
-            get { return _modelVersion; }
-            set { _modelVersion = value; this.lbModelVersion.Text = $"  模型版本：{value}"; }
+            get { return _productname; }
+            set { _productname = value; this.lbProductName.Text = $"  产品名称：{value}"; }
         }
 
-        private string _modelDate;
+        private string _number;
+        [Category("SmoreControl"), Description("单号")]
+        public string Number
+        {
+            get { return _number; }
+            set { _number = value; this.lbNumber.Text = $"  委托单号：{value}"; }
+        }
+
+        private string _CurrUser;
         [Category("SmoreControl"), Description("当前用户")]
-        public string ModelDate
+        public string CurrUser
         {
-            get { return _modelDate; }
-            set { _modelDate = value; this.lbCurUser.Text = $"  当前用户：{value}"; }
+            get { return _CurrUser; }
+            set { _CurrUser = value; this.lbCurUser.Text = $"  当前用户：{value}"; }
         }
 
-        private string _batchNumber;
-        [Category("SmoreControl"), Description("当前批号")]
-        //public string BatchNumber
-        //{
-        //    get { return _batchNumber; }
-        //    set { _batchNumber = value; this.lbBatchNumber.Text = $"  当前批号：{value}"; }
-        //}
+        private string _DetectUser;
+        [Category("SmoreControl"), Description("检测用户")]
+        public string DetectUser
+        {
+            get { return _DetectUser; }
+            set { _DetectUser = value; this.lbDetectPerson.Text = $"  检测用户：{value}"; }
+        }
+
+        private string _detectDate;
+        [Category("SmoreControl"), Description("检测日期")]
+        public string DetectDate
+        {
+            get { return _detectDate; }
+            set { _detectDate = value; this.lbDetectDate.Text = $"  检测日期：{value}"; }
+        }
         #endregion
 
         private XMLConfigParse m_XMLConfigParse = null;
@@ -104,18 +112,18 @@ namespace SmoreControlLibrary.SMInfo
 
             List<FileInfo> list = GetFamilyFiles(new DirectoryInfo($@"{AppDomain.CurrentDomain.BaseDirectory}Formula"));
             
-            formChangeInfo.ProductModel = m_XMLConfigParse.Device.Items[0].ProductModel;
-            formChangeInfo.Batch = m_XMLConfigParse.Device.Items[0].CurBatch;
-            formChangeInfo.ProductGroup = m_XMLConfigParse.Device.Items[0].EquipmentNumber;
+            formChangeInfo.ProjName = m_XMLConfigParse.Device.Items[0].ProjName;
+            formChangeInfo.DetectDate = m_XMLConfigParse.Device.Items[0].DetectDate;
+            formChangeInfo.ProductName = m_XMLConfigParse.Device.Items[0].ProductName;
             formChangeInfo.AddItems(list);
 
             formChangeInfo.ShowDialog();
 
             if (!formChangeInfo.CHANGE) return;
-            if (formChangeInfo.Batch == "" || formChangeInfo.Batch == null || formChangeInfo.ProductModel == "" || formChangeInfo.ProductModel == null || formChangeInfo.ProductGroup == "" || formChangeInfo.ProductGroup == null) return;
-            m_XMLConfigParse.Device.Items[0].EquipmentNumber = formChangeInfo.ProductGroup;
-            m_XMLConfigParse.Device.Items[0].CurBatch = formChangeInfo.Batch;
-            m_XMLConfigParse.Device.Items[0].ProductModel = formChangeInfo.ProductModel;
+            if (formChangeInfo.DetectDate == "" || formChangeInfo.DetectDate == null || formChangeInfo.ProjName == "" || formChangeInfo.ProjName == null || formChangeInfo.ProductName == "" || formChangeInfo.ProductName == null) return;
+            m_XMLConfigParse.Device.Items[0].ProductName = formChangeInfo.ProductName;
+            m_XMLConfigParse.Device.Items[0].DetectDate = formChangeInfo.DetectDate;
+            m_XMLConfigParse.Device.Items[0].ProjName = formChangeInfo.ProjName;
             XMLSerialize.SerializeToXml<XMLConfigParse>(ConfigFilePath, m_XMLConfigParse, ref ErrorInfo);
 
             Update();
@@ -144,16 +152,18 @@ namespace SmoreControlLibrary.SMInfo
 
         private void Update()
         {
-            //产品型号
-            ProductModel = m_XMLConfigParse.Device.Items[0].ProductModel;
-            ////设备编号
-            //EquipmentNumber = m_XMLConfigParse.Device.Items[0].EquipmentNumber;
-            //模型版本
-            ModelVersion = m_XMLConfigParse.Device.Items[0].ModelVer;
-            //模型日期
-            ModelDate = m_XMLConfigParse.Device.Items[0].ModelDate;
-            ////当前批次号
-            //BatchNumber = m_XMLConfigParse.Device.Items[0].CurBatch;
+            //项目名称
+            ProjName = m_XMLConfigParse.Device.Items[0].ProjName;
+            ////产品型号
+            ProductName = m_XMLConfigParse.Device.Items[0].ProductName;
+            //委托单号
+            Number = m_XMLConfigParse.Device.Items[0].Number;
+            //检测日期
+            DetectDate = m_XMLConfigParse.Device.Items[0].DetectDate;
+            //检测人员
+            DetectUser = m_XMLConfigParse.Device.Items[0].DetectUser;
+            //当前用户
+            CurrUser = m_XMLConfigParse.Device.Items[0].CurrUser;
         }
 
         private int InitialConfigFile()

@@ -148,6 +148,7 @@ namespace SmoreControlLibrary
 
         [XmlElement("PLC")]
         public PLCElement PLC { get; set;}
+
         [XmlElement("SaveImage")]
         public SaveImageElement SaveImage { get; set;}
         [XmlElement("SDK")]
@@ -268,16 +269,18 @@ namespace SmoreControlLibrary
         [XmlType("DeviceItem")]
         public class DeviceItem
         {
-            [XmlAttribute("ProductModel")]
-            public string ProductModel { get; set; }
-            [XmlAttribute("EquipmentNumber")]
-            public string EquipmentNumber { get; set; }
-            [XmlAttribute("ModelVer")]
-            public string ModelVer { get; set; }
-            [XmlAttribute("ModelDate")]
-            public string ModelDate { get; set; }
-            [XmlAttribute("CurBatch")]
-            public string CurBatch { get; set; }
+            [XmlAttribute("ProjName")]
+            public string ProjName { get; set; }
+            [XmlAttribute("ProductName")]
+            public string ProductName { get; set; }
+            [XmlAttribute("Number")]
+            public string Number { get; set; }
+            [XmlAttribute("CurrUser")]
+            public string CurrUser { get; set; }
+            [XmlAttribute("DetectUser")]
+            public string DetectUser { get; set; }
+            [XmlAttribute("DetectDate")]
+            public string DetectDate { get; set; }
         }
 
         [XmlType("SaveTime")]

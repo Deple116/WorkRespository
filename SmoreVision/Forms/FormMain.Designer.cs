@@ -32,7 +32,6 @@ namespace SmoreVision
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.smLogWindow = new SMLogControlLibrary.SMLogWindow();
-            this.smInfoWindow1 = new SmoreControlLibrary.SMInfo.SMInfoWindow();
             this.smDataWindow1 = new SmoreControlLibrary.SMData.SMDataWindow();
             this.tableLayoutPanelMainHome = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -46,10 +45,11 @@ namespace SmoreVision
             this.panelDataShow = new System.Windows.Forms.Panel();
             this.tPDataStatistics = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tPChart = new System.Windows.Forms.TabPage();
-            this.panelDataStatistics = new System.Windows.Forms.Panel();
             this.tPSql = new System.Windows.Forms.TabPage();
             this.panelSql = new System.Windows.Forms.Panel();
+            this.tPChart = new System.Windows.Forms.TabPage();
+            this.panelDataStatistics = new System.Windows.Forms.Panel();
+            this.smInfoWindow1 = new SmoreControlLibrary.SMInfo.SMInfoWindow();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanelMainHome.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -59,8 +59,8 @@ namespace SmoreVision
             this.tPDataShow.SuspendLayout();
             this.tPDataStatistics.SuspendLayout();
             this.tabControl2.SuspendLayout();
-            this.tPChart.SuspendLayout();
             this.tPSql.SuspendLayout();
+            this.tPChart.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -68,8 +68,8 @@ namespace SmoreVision
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.smLogWindow, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.smInfoWindow1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.smDataWindow1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.smInfoWindow1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(805, 30);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -89,17 +89,6 @@ namespace SmoreVision
             this.smLogWindow.Size = new System.Drawing.Size(321, 214);
             this.smLogWindow.TabIndex = 0;
             this.smLogWindow.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(136)))), ((int)(((byte)(149)))));
-            // 
-            // smInfoWindow1
-            // 
-            this.smInfoWindow1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.smInfoWindow1.Location = new System.Drawing.Point(3, 3);
-            this.smInfoWindow1.ModelDate = "";
-            this.smInfoWindow1.ModelVersion = "V1.0";
-            this.smInfoWindow1.Name = "smInfoWindow1";
-            this.smInfoWindow1.ProductModel = "";
-            this.smInfoWindow1.Size = new System.Drawing.Size(321, 213);
-            this.smInfoWindow1.TabIndex = 1;
             // 
             // smDataWindow1
             // 
@@ -280,6 +269,25 @@ namespace SmoreVision
             this.tabControl2.Size = new System.Drawing.Size(791, 653);
             this.tabControl2.TabIndex = 1;
             // 
+            // tPSql
+            // 
+            this.tPSql.Controls.Add(this.panelSql);
+            this.tPSql.Location = new System.Drawing.Point(4, 22);
+            this.tPSql.Name = "tPSql";
+            this.tPSql.Padding = new System.Windows.Forms.Padding(3);
+            this.tPSql.Size = new System.Drawing.Size(783, 627);
+            this.tPSql.TabIndex = 1;
+            this.tPSql.Text = "数据库";
+            this.tPSql.UseVisualStyleBackColor = true;
+            // 
+            // panelSql
+            // 
+            this.panelSql.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSql.Location = new System.Drawing.Point(3, 3);
+            this.panelSql.Name = "panelSql";
+            this.panelSql.Size = new System.Drawing.Size(777, 621);
+            this.panelSql.TabIndex = 0;
+            // 
             // tPChart
             // 
             this.tPChart.Controls.Add(this.panelDataStatistics);
@@ -299,24 +307,18 @@ namespace SmoreVision
             this.panelDataStatistics.Size = new System.Drawing.Size(777, 621);
             this.panelDataStatistics.TabIndex = 0;
             // 
-            // tPSql
+            // smInfoWindow1
             // 
-            this.tPSql.Controls.Add(this.panelSql);
-            this.tPSql.Location = new System.Drawing.Point(4, 22);
-            this.tPSql.Name = "tPSql";
-            this.tPSql.Padding = new System.Windows.Forms.Padding(3);
-            this.tPSql.Size = new System.Drawing.Size(783, 627);
-            this.tPSql.TabIndex = 1;
-            this.tPSql.Text = "数据库";
-            this.tPSql.UseVisualStyleBackColor = true;
-            // 
-            // panelSql
-            // 
-            this.panelSql.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSql.Location = new System.Drawing.Point(3, 3);
-            this.panelSql.Name = "panelSql";
-            this.panelSql.Size = new System.Drawing.Size(777, 621);
-            this.panelSql.TabIndex = 0;
+            this.smInfoWindow1.CurrUser = null;
+            this.smInfoWindow1.DetectDate = null;
+            this.smInfoWindow1.DetectUser = null;
+            this.smInfoWindow1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.smInfoWindow1.Location = new System.Drawing.Point(3, 3);
+            this.smInfoWindow1.Name = "smInfoWindow1";
+            this.smInfoWindow1.Number = null;
+            this.smInfoWindow1.ProjName = null;
+            this.smInfoWindow1.Size = new System.Drawing.Size(321, 213);
+            this.smInfoWindow1.TabIndex = 3;
             // 
             // FormMain
             // 
@@ -345,8 +347,8 @@ namespace SmoreVision
             this.tPDataShow.ResumeLayout(false);
             this.tPDataStatistics.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
-            this.tPChart.ResumeLayout(false);
             this.tPSql.ResumeLayout(false);
+            this.tPChart.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -355,7 +357,6 @@ namespace SmoreVision
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private SMLogWindow smLogWindow;
-        private SmoreControlLibrary.SMInfo.SMInfoWindow smInfoWindow1;
         private SmoreControlLibrary.SMData.SMDataWindow smDataWindow1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMainHome;
         private System.Windows.Forms.Panel panel3;
@@ -373,6 +374,7 @@ namespace SmoreVision
         private System.Windows.Forms.TabPage tPChart;
         private System.Windows.Forms.TabPage tPSql;
         private System.Windows.Forms.Panel panelSql;
+        private SmoreControlLibrary.SMInfo.SMInfoWindow smInfoWindow1;
     }
 }
 

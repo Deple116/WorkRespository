@@ -68,7 +68,7 @@ namespace SmoreVision.BusinessClass
                     SaveImagePack_Buffer.TryDequeue(out saveImage);
                     string data = DateTime.Now.ToString("yyyy_MM_dd");
 
-                    string strProduct = m_XMLConfig.Device.Items[0].ProductModel;
+                    string strProduct = m_XMLConfig.Device.Items[0].ProductName;
 
                     string labelOKRootDir = m_XMLConfig.SaveImage.Items[0].Path + $"\\{data}\\{strProduct}\\OK渲染图";
                     string labelNGRootDir = m_XMLConfig.SaveImage.Items[1].Path + $"\\{data}\\{strProduct}\\NG渲染图";

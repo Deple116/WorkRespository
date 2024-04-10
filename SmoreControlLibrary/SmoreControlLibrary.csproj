@@ -244,6 +244,12 @@
     <Compile Include="SMForm\SMDataGridViewShow.Designer.cs">
       <DependentUpon>SMDataGridViewShow.cs</DependentUpon>
     </Compile>
+    <Compile Include="SMForm\SMDeviceSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SMForm\SMDeviceSet.Designer.cs">
+      <DependentUpon>SMDeviceSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="SMForm\SMLightSet.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -410,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SMForm\SMDataGridViewShow.resx">
       <DependentUpon>SMDataGridViewShow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SMForm\SMDeviceSet.resx">
+      <DependentUpon>SMDeviceSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SMForm\SMLightSet.resx">
       <DependentUpon>SMLightSet.cs</DependentUpon>
