@@ -48,19 +48,19 @@ namespace SmoreControlLibrary.SMForm
 
             ttIP.textBox1.Text = m_XMLConfigParse.PLC.IP;
             ttPort.textBox1.Text = m_XMLConfigParse.PLC.Port.ToString();
-            ttStartAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[0].Adress;
+            ttStartAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[0].Address;
             ttStartVal.textBox1.Text = m_XMLConfigParse.PLC.Items[0].Value;
 
-            ttCallZeroAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[1].Adress;
+            ttCallZeroAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[1].Address;
             ttCallbackZeroVal.textBox1.Text = m_XMLConfigParse.PLC.Items[1].Value;
 
-            ttStopAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[2].Adress;
+            ttStopAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[2].Address;
             ttStopVal.textBox1.Text = m_XMLConfigParse.PLC.Items[2].Value;
 
-            ttForwardAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[3].Adress;
+            ttForwardAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[3].Address;
             ttForWardVal.textBox1.Text = m_XMLConfigParse.PLC.Items[3].Value;
 
-            ttBackwardAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[4].Adress;
+            ttBackwardAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[4].Address;
             ttBackWardVal.textBox1.Text = m_XMLConfigParse.PLC.Items[4].Value;
         }
 
@@ -88,19 +88,19 @@ namespace SmoreControlLibrary.SMForm
                 m_XMLConfigParse.PLC.Port = int.Parse(ttPort.textBox1.Text.Trim());
 
 
-                m_XMLConfigParse.PLC.Items[0].Adress = ttStartAdr.textBox1.Text;
+                m_XMLConfigParse.PLC.Items[0].Address = ttStartAdr.textBox1.Text;
                 m_XMLConfigParse.PLC.Items[0].Value = ttStartVal.textBox1.Text;
 
-                m_XMLConfigParse.PLC.Items[1].Adress = ttCallZeroAdr.textBox1.Text;
+                m_XMLConfigParse.PLC.Items[1].Address = ttCallZeroAdr.textBox1.Text;
                 m_XMLConfigParse.PLC.Items[1].Value = ttCallbackZeroVal.textBox1.Text;
 
-                m_XMLConfigParse.PLC.Items[2].Adress = ttStopAdr.textBox1.Text;
+                m_XMLConfigParse.PLC.Items[2].Address = ttStopAdr.textBox1.Text;
                 m_XMLConfigParse.PLC.Items[2].Value = ttStopVal.textBox1.Text;
 
-                m_XMLConfigParse.PLC.Items[3].Adress = ttForwardAdr.textBox1.Text;
+                m_XMLConfigParse.PLC.Items[3].Address = ttForwardAdr.textBox1.Text;
                 m_XMLConfigParse.PLC.Items[3].Value = ttForWardVal.textBox1.Text;
 
-                m_XMLConfigParse.PLC.Items[4].Adress = ttBackwardAdr.textBox1.Text;
+                m_XMLConfigParse.PLC.Items[4].Address = ttBackwardAdr.textBox1.Text;
                 m_XMLConfigParse.PLC.Items[4].Value = ttBackWardVal.textBox1.Text;
 
 
@@ -139,27 +139,27 @@ namespace SmoreControlLibrary.SMForm
         #region click_writedata
         private void btnStartWD_BtnClick(object sender, EventArgs e)
         {
-            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[0].Adress,ushort.Parse(m_XMLConfigParse.PLC.Items[0].Value));
+            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[0].Address,ushort.Parse(m_XMLConfigParse.PLC.Items[0].Value));
         }
 
         private void btnCallZeroWD_BtnClick(object sender, EventArgs e)
         {
-            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[1].Adress, ushort.Parse(m_XMLConfigParse.PLC.Items[1].Value));
+            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[1].Address, ushort.Parse(m_XMLConfigParse.PLC.Items[1].Value));
         }
 
         private void btnStopWD_BtnClick(object sender, EventArgs e)
         {
-            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[2].Adress, ushort.Parse(m_XMLConfigParse.PLC.Items[2].Value));
+            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[2].Address, ushort.Parse(m_XMLConfigParse.PLC.Items[2].Value));
         }
 
         private void btnForWardWD_BtnClick(object sender, EventArgs e)
         {
-            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[3].Adress, ushort.Parse(m_XMLConfigParse.PLC.Items[3].Value));
+            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[3].Address, ushort.Parse(m_XMLConfigParse.PLC.Items[3].Value));
         }
 
         private void btnBackwardWD_BtnClick(object sender, EventArgs e)
         {
-            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[4].Adress, ushort.Parse(m_XMLConfigParse.PLC.Items[4].Value));
+            m_SiemensPLCControl.WriteUshort(m_XMLConfigParse.PLC.Items[4].Address, ushort.Parse(m_XMLConfigParse.PLC.Items[4].Value));
         }
 
         #endregion
@@ -167,31 +167,31 @@ namespace SmoreControlLibrary.SMForm
         #region click_readdata
         private void btnStartRD_BtnClick(object sender, EventArgs e)
         {
-            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[0].Adress);
+            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[0].Address);
             MessageBox.Show("Read::" + bval);
         }
 
         private void btnCallZeroRD_BtnClick(object sender, EventArgs e)
         {
-            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[1].Adress);
+            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[1].Address);
             MessageBox.Show("Read::" + bval);
         }
 
         private void btnStopRD_BtnClick(object sender, EventArgs e)
         {
-            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[2].Adress);
+            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[2].Address);
             MessageBox.Show("Read::" + bval);
         }
 
         private void btnForwardRD_BtnClick(object sender, EventArgs e)
         {
-            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[3].Adress);
+            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[3].Address);
             MessageBox.Show("Read::" + bval);
         }
 
         private void btnBackwardRD_BtnClick(object sender, EventArgs e)
         {
-            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[4].Adress);
+            bool bval = m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[4].Address);
             MessageBox.Show("Read::" + bval);
         }
         #endregion

@@ -595,29 +595,35 @@ namespace SmoreVision
             try
             {
                 dicShowData.Clear();
-                Dictionary<string, string> dicTemp = m_halconImgProc.yfExcute(index);
+                Dictionary<string, string> dicTemp = new Dictionary<string, string>();
 
-                dicShowData.Add("product_datetime", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
-                if (dicTemp.Count == 3)
+                if(m_halconImgProc.yfOfflineExcute(index))
                 {
-                    string[] tempx = dicTemp["xval"].Split(';');
-                    string[] tempy = dicTemp["yval"].Split(';');
-                    string[] tempz = dicTemp["zval"].Split(';');
-
-                    for (int i = 0; i < tempx.Length; i++)
+                    dicTemp=m_halconImgProc.ImgProcess();
+                    dicShowData.Add("product_datetime", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+                    if (dicTemp.Count == 3)
                     {
-                        if (tempx[i] == "") continue;
+                        string[] tempx = dicTemp["xval"].Split(';');
+                        string[] tempy = dicTemp["yval"].Split(';');
+                        string[] tempz = dicTemp["zval"].Split(';');
 
-                        stralgoRes += $"Reg_{(i + 1).ToString("000")}:{tempx[i]},{tempy[i]},{tempz[i]};";
-                        dicShowData.Add($"Reg_{(i + 1).ToString("000")}", $"{tempx[i]},{tempy[i]},{tempz[i]}");
+                        for (int i = 0; i < tempx.Length; i++)
+                        {
+                            if (tempx[i] == "") continue;
+
+                            stralgoRes += $"Reg_{(i + 1).ToString("000")}:{tempx[i]},{tempy[i]},{tempz[i]};";
+                            dicShowData.Add($"Reg_{(i + 1).ToString("000")}", $"{tempx[i]},{tempy[i]},{tempz[i]}");
+                        }
                     }
+
+
+                    NG_Algo = "Reg_001,Reg_010,Reg_015,Reg_030,";
+
+                    ShowData(new string[] { stralgoRes, NG_Algo });
+                    form_productinfo.WriteSqlData("product", dicShowData);
                 }
 
-
-                NG_Algo = "Reg_001,Reg_010,Reg_015,Reg_030,";
-
-                ShowData(new string[] { stralgoRes, NG_Algo });
-                form_productinfo.WriteSqlData("product", dicShowData);
+                
 
                 return true;
             }

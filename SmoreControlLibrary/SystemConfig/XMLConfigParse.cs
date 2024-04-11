@@ -69,7 +69,7 @@ namespace SmoreControlLibrary
                         string itemName = $"PLC.Items[{i}]";
                         PLCNode[i] = new Dictionary<string, string>();
                         PLCNode[i].Add($"{itemName}.Name", PLC.Items[i].Name);
-                        PLCNode[i].Add($"{itemName}.Adress", PLC.Items[i].Adress);
+                        PLCNode[i].Add($"{itemName}.Address", PLC.Items[i].Address);
                         PLCNode[i].Add($"{itemName}.Value", PLC.Items[i].Value);
                         NodeDictionary.Add(itemName, PLCNode[i]);
                     }
@@ -205,8 +205,8 @@ namespace SmoreControlLibrary
         {
             [XmlAttribute("Name")]
             public string Name { get; set; }
-            [XmlAttribute("Adress")]
-            public string Adress { get; set; }
+            [XmlAttribute("Address")]
+            public string Address { get; set; }
             [XmlAttribute("Value")]
             public string Value { get; set; }
 
