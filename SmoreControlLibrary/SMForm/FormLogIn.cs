@@ -180,6 +180,7 @@ namespace SmoreControlLibrary.SMForm
                     idname = IDName.Admin;
                     break;
             }
+            textBoxPassWord.Focus();
         }
 
         private void FormLogIn_Shown(object sender, EventArgs e)
