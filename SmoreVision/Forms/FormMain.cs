@@ -262,23 +262,23 @@ namespace SmoreVision
             #endregion
 
 
-            Task.Run(() =>
-            {
-                while (bSetUpdate)
-                {
-                    if (bJson)//加载型号内圈，外圈信息
-                    {
-                        bJson = false;
+            //Task.Run(() =>
+            //{
+            //    while (bSetUpdate)
+            //    {
+            //        if (bJson)//加载型号内圈，外圈信息
+            //        {
+            //            bJson = false;
 
-                        if (InitialConfigFile() != ERR_OK)
-                        {
-                            Log.Add("加载配置文件失败", Color.Green, bshow: true);
-                        }
-                        LoadProductInfo();
-                    }
-                    Thread.Sleep(100);
-                }
-            });
+            //            if (InitialConfigFile() != ERR_OK)
+            //            {
+            //                Log.Add("加载配置文件失败", Color.Green, bshow: true);
+            //            }
+            //            LoadProductInfo();
+            //        }
+            //        Thread.Sleep(100);
+            //    }
+            //});
 
 
             FileControl.DellogsDir(XMLConfig.SaveImage.Items[0].Path, XMLConfig.SaveTime.Items[0].SaveDays);
@@ -505,7 +505,7 @@ namespace SmoreVision
         {
             try
             {
-                MultipleTestTask("TSTM");
+               // MultipleTestTask("TSTM");
             }
             catch (Exception ex)
             {
