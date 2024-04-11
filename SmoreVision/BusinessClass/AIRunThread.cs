@@ -1,6 +1,7 @@
 ﻿using AlgoControlLibrary.AlgoBaseFactory;
 using AlgoControlLibrary.VimoAlgo;
 using CameraControlLibrary;
+using HalconAlgoCtrlLib;
 using IOControlLibrary.TAS;
 using OpenCvSharp;
 using SMLogControlLibrary;
@@ -39,6 +40,7 @@ namespace SmoreVision.BusinessClass
         public ShowResult m_ShowResult = null;
 
         private CameraInterface m_CameraControl;
+        private HalcoImgProc m_halconImgProc;
 
         private SaveImageThread m_SaveImageThread;
 
@@ -53,12 +55,12 @@ namespace SmoreVision.BusinessClass
 
         const int ERR_FAILED = -1;
 
-        public AIRunThread(CameraInterface _CameraControl, SaveImageThread _saveImageThread, VimoManager _aISDKManage, SiemensPLCControl _siemensPLCControl, TasControl _iOControlClass)
+        public AIRunThread(HalcoImgProc halcoImgProc, SaveImageThread _saveImageThread, SiemensPLCControl _siemensPLCControl)
         {
-            iOControlClass = _iOControlClass;
-            m_CameraControl = _CameraControl;
+
+            
             m_SaveImageThread = _saveImageThread;
-            m_AISDKManage = _aISDKManage;
+            m_halconImgProc=halcoImgProc;
             m_SiemensPLCControl = _siemensPLCControl;
         }
 

@@ -64,7 +64,8 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
-                m_Siemens.ConnectClose();
+
+                if(m_Siemens!=null)m_Siemens.ConnectClose();
                 return ERROR_OK;
             }
             catch (Exception ex)

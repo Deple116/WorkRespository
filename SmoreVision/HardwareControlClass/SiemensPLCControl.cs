@@ -47,7 +47,7 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
-                m_Siemens = new SiemensS7Net(SiemensPLCS.S1500, m_XMLConfigParse.PLC.IP) { ConnectTimeOut = 5000 };
+                m_Siemens = new SiemensS7Net(SiemensPLCS.S200Smart, m_XMLConfigParse.PLC.IP) { ConnectTimeOut = 5000 };
                 OperateResult connect = m_Siemens.ConnectServer();
                 if (connect.IsSuccess)
                 {

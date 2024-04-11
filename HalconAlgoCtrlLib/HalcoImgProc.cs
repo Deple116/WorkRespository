@@ -32,6 +32,7 @@ namespace HalconAlgoCtrlLib
         HObject obj;
 
         #region 属性
+        public string CCDName { get; set; } = "CCD1";
         public HObject ImgGray
         {
             get=> hImageGray;

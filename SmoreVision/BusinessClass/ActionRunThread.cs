@@ -1,4 +1,6 @@
 ﻿using CameraControlLibrary;
+using HalconAlgoCtrlLib;
+using HalconDotNet;
 using SMLogControlLibrary;
 using SmoreControlLibrary;
 using SmoreControlLibrary.SMData;
@@ -27,6 +29,16 @@ namespace SmoreVision.BusinessClass
     }
     public delegate void SendProductInfo(ProductInfo proinfo);
 
+    public struct AlgoResult
+    {
+        public HObject oriImg;
+        public HObject maskImg;
+        public Dictionary<string, string> dicAlgoRes;
+        public bool bAlgoResult;
+    }
+
+
+    public delegate void SendAlgoResult(AlgoResult _algoResult);
     public class ActionRunThread
     {
         private const int ERROR_OK = 0;
@@ -37,18 +49,20 @@ namespace SmoreVision.BusinessClass
         private int returnValue = 0;
 
         private CameraInterface m_CameraControl = null;
+        private HalcoImgProc m_halconImgProc;
         private SiemensPLCControl m_SiemensPLCControl;
-
+        private XMLConfigParse m_XMLConfigParse;
         private Task m_ActionThreadProcess;
         bool bTri = true;
         bool bchange = true;
         public SendProductInfo m_sendProduct;
 
-       
-        public ActionRunThread(CameraInterface _CameraControl, SiemensPLCControl _siemensPLCControl)
+       public SendAlgoResult m_sendAlgoResult;
+        public ActionRunThread(HalcoImgProc halcoImgProc, SiemensPLCControl _siemensPLCControl,ref XMLConfigParse xMLConfigParse)
         {
-            m_CameraControl = _CameraControl;
-            m_SiemensPLCControl = _siemensPLCControl;
+             m_halconImgProc=halcoImgProc;
+             m_SiemensPLCControl = _siemensPLCControl;
+             m_XMLConfigParse=xMLConfigParse;
         }
 
         public int StartThread()
@@ -72,18 +86,28 @@ namespace SmoreVision.BusinessClass
                     {
                         case "CCD1":
                             {
-                                ////收到plc触发相机命令
+                                //收到plc触发相机命令
                                 //if (m_SiemensPLCControl.ReadBool("DB89.60.0") && bTri)
-                                //{
-                                //    bTri = false;
-                                //    //触发相机取图
-                                //    m_HIKCameraControl.SoftWareTriggerOnce();
-                                //}
+                                if (m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[0].Value) && bTri)
+                                {
+                                    bTri = false;
+                                    //触发相机取图                                  
+                                    if(m_halconImgProc.yfOnlineExcute())
+                                    //if(m_halconImgProc.GrabTestImg())
+                                    {
+                                        //图像处理
+                                      Dictionary<string,string> dicTemp=  m_halconImgProc.ImgProcess();
+
+                                        m_sendAlgoResult(new AlgoResult() { oriImg=m_halconImgProc.ImgGray,dicAlgoRes=dicTemp,bAlgoResult=false });
+                                    }
+                                    
+                                }
 
                                 //if (!m_SiemensPLCControl.ReadBool("DB89.60.0") && !bTri)
-                                //{
-                                //    bTri = true;
-                                //}
+                                if (!m_SiemensPLCControl.ReadBool(m_XMLConfigParse.PLC.Items[0].Value) && !bTri) 
+                                {
+                                    bTri = true;
+                                }
                             }
                             break;
                         case "CCD2":
