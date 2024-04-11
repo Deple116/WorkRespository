@@ -194,11 +194,23 @@ namespace SmoreVision
             //{
             //    Log.Add($"PLC初始化成功!", Color.Green);
 
-            //}
-            //smButtonRun.Enabled = true;
+            //    //获取当前型号
+            //    byte data = m_SiemensPLCControl.ReadByte("DB89.67.0");
+            //    string strSN = m_SiemensPLCControl.ReadString("DB89.68.0", (ushort)data);
 
-            
-            ////ready信号
+            //    GlobalVariables.Variables.strCurrModel = strSN;
+            //    Log.Add($"当前型号:{strSN}!", Color.Green);
+
+            //    ProductRecive2(new ProductInfo() { Product_Model = strSN, Product_content = "change" });
+
+            smInfoWindow1.AddConfig(XMLConfig);
+
+            smButtonRun.Enabled = true;
+
+
+
+            #region plc_ready
+            ////CCD15 ready信号
             //returnValue = m_SiemensPLCControl.WriteBool("DB2000.0.1", true);
             //if (returnValue != ERROR_OK)
             //{
@@ -212,9 +224,25 @@ namespace SmoreVision
 
             #endregion
 
-            m_ActionRunThread[0]=new ActionRunThread(m_halconImgProc, m_SiemensPLCControl,ref XMLConfig);
-            //m_AIRunThread[0] = new AIRunThread(m_halconImgProc, m_SaveImageThread, m_SiemensPLCControl);
-            m_ActionRunThread[0].m_sendAlgoResult=AlgoResProc;
+
+            //Task.Run(() =>
+            //{
+            //    while (bSetUpdate)
+            //    {
+            //        if (bJson)//加载型号内圈，外圈信息
+            //        {
+            //            bJson = false;
+
+            //            if (InitialConfigFile() != ERR_OK)
+            //            {
+            //                Log.Add("加载配置文件失败", Color.Green, bshow: true);
+            //            }
+            //            LoadProductInfo();
+            //        }
+            //        Thread.Sleep(100);
+            //    }
+            //});
+
 
             FileControl.DellogsDir(XMLConfig.SaveImage.Items[0].Path, XMLConfig.SaveTime.Items[0].SaveDays);
             SMFormWelcom.LoadingMsg("初始化成功", 100);
@@ -336,10 +364,12 @@ namespace SmoreVision
                 {
                    m_ActionRunThread[i].StartThread();
                     
-                    //m_ConnectHeartbeatThreads[i].StartThread();                  
-                    //if (m_AIRunThread[i] != null) m_AIRunThread[i].StartThread();
-                    //if (m_AIRunThread[i] != null) m_AIRunThread[i].m_ShowImage = m_SMImageWindows[i + 1].ImageShow;
-                    //if (m_AIRunThread[i] != null) m_AIRunThread[i].m_ShowResult = m_SMImageWindows[i + 1].ResultShow;
+                    //m_ConnectHeartbeatThreads[i].StartThread();
+                    if (i == 1) continue;
+                    if (m_CameraControl[i]!=null) m_CameraControl[i].SetExternalTriggerMode();
+                    if (m_AIRunThread[i] != null) m_AIRunThread[i].StartThread();
+                    if (m_AIRunThread[i] != null) m_AIRunThread[i].m_ShowImage = m_SMImageWindows[i + 1].ImageShow;
+                    if (m_AIRunThread[i] != null) m_AIRunThread[i].m_ShowResult = m_SMImageWindows[i + 1].ResultShow;
                     //m_ConnectHeartbeatThreads[i].m_ShowHeartColor += m_SMImageWindows[i+1].HeartResultShow;
                 }
                 
@@ -352,9 +382,10 @@ namespace SmoreVision
                 //smImageWindow2.ShowManualButton = true;
                 for (int i = 0; i < GlobalVariables.GConst.STATION_COUNT; i++)
                 {
-                    m_ActionRunThread[i].Cycled = false;
-                    
-                    //if (m_AIRunThread[i] != null) m_AIRunThread[i].Cycled = false;
+                    //m_ActionRunThread[i].Cycled = false;
+                    if (i == 1) continue;
+                    if (m_CameraControl[i] != null) m_CameraControl[i].SetSoftwareTriggerMode();
+                    if (m_AIRunThread[i] != null) m_AIRunThread[i].Cycled = false;
                     //m_ConnectHeartbeatThreads[i].Cycled = false;
                 }
 

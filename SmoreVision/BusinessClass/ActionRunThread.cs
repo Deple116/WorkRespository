@@ -1,6 +1,4 @@
 ﻿using CameraControlLibrary;
-using HalconAlgoCtrlLib;
-using HalconDotNet;
 using SMLogControlLibrary;
 using SmoreControlLibrary;
 using SmoreControlLibrary.SMData;
@@ -57,12 +55,11 @@ namespace SmoreVision.BusinessClass
         bool bchange = true;
         public SendProductInfo m_sendProduct;
 
-       public SendAlgoResult m_sendAlgoResult;
-        public ActionRunThread(HalcoImgProc halcoImgProc, SiemensPLCControl _siemensPLCControl,ref XMLConfigParse xMLConfigParse)
+       
+        public ActionRunThread(CameraInterface _CameraControl, SiemensPLCControl _siemensPLCControl)
         {
-             m_halconImgProc=halcoImgProc;
-             m_SiemensPLCControl = _siemensPLCControl;
-             m_XMLConfigParse=xMLConfigParse;
+            m_CameraControl = _CameraControl;
+            m_SiemensPLCControl = _siemensPLCControl;
         }
 
         public int StartThread()
