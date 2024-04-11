@@ -1,4 +1,5 @@
 ﻿using CameraControlLibrary;
+using HalconAlgoCtrlLib;
 using SMLogControlLibrary;
 using SmoreControlLibrary;
 using SmoreControlLibrary.SMData;
@@ -37,6 +38,7 @@ namespace SmoreVision.BusinessClass
         private int returnValue = 0;
 
         private CameraInterface m_CameraControl = null;
+        private HalcoImgProc m_halconImgProc;
         private SiemensPLCControl m_SiemensPLCControl;
 
         private Task m_ActionThreadProcess;
@@ -45,10 +47,10 @@ namespace SmoreVision.BusinessClass
         public SendProductInfo m_sendProduct;
 
        
-        public ActionRunThread(CameraInterface _CameraControl, SiemensPLCControl _siemensPLCControl)
+        public ActionRunThread(HalcoImgProc halcoImgProc, SiemensPLCControl _siemensPLCControl)
         {
-            m_CameraControl = _CameraControl;
-            m_SiemensPLCControl = _siemensPLCControl;
+             m_halconImgProc=halcoImgProc;
+             m_SiemensPLCControl = _siemensPLCControl;
         }
 
         public int StartThread()

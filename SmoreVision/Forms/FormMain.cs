@@ -162,16 +162,10 @@ namespace SmoreVision
             m_AIRunThread = new AIRunThread[GlobalVariables.GConst.STATION_COUNT];
             m_SaveImageThread = new SaveImageThread(XMLConfig);
             m_AISDKManage = new VimoSegmentManager();
-            m_SiemensPLCControl = new SiemensPLCControl(ref XMLConfig);
+            m_SiemensPLCControl = new SiemensPLCControl();
             smImageWindow1.ShowManualButton = true;
             //smImageWindow2.ShowManualButton = true;
             smImageWindow1.InitData();
-            //smImageWindow2.InitData();
-
-            //m_SaveImageThread.StartThread(); //临时启动存图线程
-
-            //string pathTemp = Application.StartupPath + "\\Formula";
-            //List<FileInfo> m_fileinfo = GetFamilyFiles(new DirectoryInfo(pathTemp));
 
             //设备信息更新
             smInfoWindow1.Init();
@@ -179,37 +173,18 @@ namespace SmoreVision
             //初始化UI
             InitUI();
 
-            //初始化算法
+            //初始化Halcon
             InitAlgo();
 
             //更新数据显示
             CheckData();
 
             m_halconImgProc.StartDebug();
-            
-
-            ////算法初始化
-            //returnValue = (int)m_AISDKManage.Init(new AlgoInitInput() { modelPath = XMLConfig.SDK.Items[0].ConfigPath, useGpu = XMLConfig.SDK.Items[0].GPU, moduleId = XMLConfig.SDK.Items[0].SolutionId.ToString() });
-            //if (returnValue != ERROR_OK)
-            //{
-            //    Log.Add($"AI SDK 初始化失败!", Color.Red, bshow: true);
-            //    SMFormWelcom.LoadingMsg("AI SDK 初始化失败", 50);
-            //    // return;
-            //}
-            //else
-            //{
-            //    Log.Add($"AI SDK 初始化成功!", Color.Green, bshow: true);
-            //    SMFormWelcom.LoadingMsg("AI SDK 初始化成功", 50);
-            //}
 
 
-
-
-            //相机初始化
-            //InitCam();
-
-            //plc初始化
-            //returnValue = m_SiemensPLCControl.Initial();
+            #region plc
+            ////plc初始化
+            //returnValue = m_SiemensPLCControl.Initial(XMLConfig.PLC.IP);
             //if (returnValue != ERROR_OK)
             //{
             //    Log.Add($"PLC初始化失败!", Color.Red);
@@ -219,66 +194,26 @@ namespace SmoreVision
             //{
             //    Log.Add($"PLC初始化成功!", Color.Green);
 
-            //    //获取当前型号
-            //    byte data = m_SiemensPLCControl.ReadByte("DB89.67.0");
-            //    string strSN = m_SiemensPLCControl.ReadString("DB89.68.0", (ushort)data);
+            //}
+            //smButtonRun.Enabled = true;
 
-            //    GlobalVariables.Variables.strCurrModel = strSN;
-            //    Log.Add($"当前型号:{strSN}!", Color.Green);
-
-            //    ProductRecive2(new ProductInfo() { Product_Model = strSN, Product_content = "change" });
-
-            smInfoWindow1.AddConfig(XMLConfig);
-
-            smButtonRun.Enabled = true;
-
-
-
-            #region plc_ready
-            ////CCD15 ready信号
+            
+            ////ready信号
             //returnValue = m_SiemensPLCControl.WriteBool("DB2000.0.1", true);
             //if (returnValue != ERROR_OK)
             //{
-            //    Log.Add($"CCD15 PC->PLC Ready 信号失败!", Color.Red);
+            //    Log.Add($"PC->PLC Ready 信号失败!", Color.Red);
             //    return;
             //}
             //else
             //{
-            //    Log.Add($"CCD15 PC->PLC Ready 信号成功!", Color.Green);
-            //}
-
-            ////CCD17 ready信号
-            //returnValue = m_SiemensPLCControl.WriteBool("DB2000.8.1", true);
-            //if (returnValue != ERROR_OK)
-            //{
-            //    Log.Add($"CCD17 PC->PLC Ready 信号失败!", Color.Red);
-            //    return;
-            //}
-            //else
-            //{
-            //    Log.Add($"CCD17 PC->PLC Ready 信号成功!", Color.Green);
+            //    Log.Add($"PC->PLC Ready 信号成功!", Color.Green);
             //}
 
             #endregion
 
-
-            //Task.Run(() =>
-            //{
-            //    while (bSetUpdate)
-            //    {
-            //        if (bJson)//加载型号内圈，外圈信息
-            //        {
-            //            bJson = false;
-
-            //            if (InitialConfigFile() != ERR_OK)
-            //            {
-            //                Log.Add("加载配置文件失败", Color.Green, bshow: true);
-            //            }
-            //            LoadProductInfo();
-            //        }
-            //        Thread.Sleep(100);
-            //    }
-            //});
+            m_ActionRunThread[0]=new ActionRunThread(m_halconImgProc, m_SiemensPLCControl);
+            m_AIRunThread[0] = new AIRunThread(m_halconImgProc, m_SaveImageThread, m_SiemensPLCControl);
 
 
             FileControl.DellogsDir(XMLConfig.SaveImage.Items[0].Path, XMLConfig.SaveTime.Items[0].SaveDays);
@@ -311,65 +246,7 @@ namespace SmoreVision
             }
 
         }
-        private void InitCam()
-        {
-            Dictionary<string, CamInfo> dicCam = new Dictionary<string, CamInfo>();
-            dicCam.Add("CCD1", new CamInfo { camType = CamType.DahuaArea });
-            dicCam.Add("CCD2", new CamInfo { camType = CamType.HikArea });
-            //dicCam.Add("CCD3", new CamInfo{ camType = CamType.HikArea});
-
-            //Init
-
-            if (dicCam.Count == m_CameraControl.Length)
-            {
-                for (int i = 0; i < dicCam.Count; i++)
-                {
-                    switch (dicCam.Values.ElementAt(i).camType)
-                    {
-                        case CamType.HikArea:
-                            m_CameraControl[i] = new HIKCameraControl(dicCam.Keys.ElementAt(i), dicCam.Values.ElementAt(i).camType.ToString());
-                            break;
-                        case CamType.DahuaArea:
-                            m_CameraControl[i] = new DahuaCameraControl(dicCam.Keys.ElementAt(i), dicCam.Values.ElementAt(i).camType.ToString());
-                            break;
-                        case CamType.DalsaLine:
-                            //string iniPath1 = AppDomain.CurrentDomain.BaseDirectory + "\\Config\\split.ccf";
-                            //string strCard = "Xtium-CL_MX4_1";
-                            //string strCam = "CameraLink_1";
-                            string iniPath1 = dicCam.Values.ElementAt(i).ccfPath;
-                            string strCard = dicCam.Values.ElementAt(i).strCard;
-                            string strCam = dicCam.Values.ElementAt(i).strCam;
-                            m_CameraControl[i] = new class_CameraDalsaLine(iniPath1, strCard, strCam, dicCam.Keys.ElementAt(i), dicCam.Values.ElementAt(i).camType.ToString());
-                            break;
-                    }
-
-                    if (m_CameraControl[i].CCDName == "CCD2") continue;
-                    returnValue = m_CameraControl[i].Initial();
-                    if (returnValue != ERROR_OK)
-                    {
-                        Log.Add($"{dicCam.Keys.ElementAt(i)}:初始化失败", Color.Red, bshow: true);
-                        SMFormWelcom.LoadingMsg($"{dicCam.Keys.ElementAt(i)}:初始化失败", 80);
-                        // Console.WriteLine($"{dicCam.Keys.ElementAt(i)}:初始化失败");
-                        // return;
-                    }
-                    else
-                    {
-                        //m_CameraControl[i].SetSoftwareTriggerMode();
-                        m_AIRunThread[i] = new AIRunThread(m_CameraControl[i], m_SaveImageThread, m_AISDKManage, m_SiemensPLCControl,iOControlClass);
-                        Log.Add($"{dicCam.Keys.ElementAt(i)}:初始化成功", Color.Green, bshow: true);
-                        SMFormWelcom.LoadingMsg($"{dicCam.Keys.ElementAt(i)}:初始化成功", 80);
-
-                        //Console.WriteLine($"{dicCam.Keys.ElementAt(i)}:初始化成功");
-                    }
-                }
-            }
-            else
-            {
-                Log.Add($"dicCount:{dicCam.Count}:camLength:{m_CameraControl.Length}", Color.Red);
-                //Console.WriteLine($"dicCount:{dicCam.Count}:camLength:{m_CameraControl.Length}");
-            }
-        }
-
+        
         private void InitAlgo()
         {
             m_halconImgProc.yfInit();
@@ -448,11 +325,9 @@ namespace SmoreVision
                 //smImageWindow2.ShowManualButton = false;
                 for (int i = 0; i < GlobalVariables.GConst.STATION_COUNT; i++)
                 {
-                   // m_ActionRunThread[i].StartThread();
+                   m_ActionRunThread[i].StartThread();
                     
-                    //m_ConnectHeartbeatThreads[i].StartThread();
-                    if (i == 1) continue;
-                    if (m_CameraControl[i]!=null) m_CameraControl[i].SetExternalTriggerMode();
+                    //m_ConnectHeartbeatThreads[i].StartThread();                  
                     if (m_AIRunThread[i] != null) m_AIRunThread[i].StartThread();
                     if (m_AIRunThread[i] != null) m_AIRunThread[i].m_ShowImage = m_SMImageWindows[i + 1].ImageShow;
                     if (m_AIRunThread[i] != null) m_AIRunThread[i].m_ShowResult = m_SMImageWindows[i + 1].ResultShow;
@@ -468,9 +343,8 @@ namespace SmoreVision
                 //smImageWindow2.ShowManualButton = true;
                 for (int i = 0; i < GlobalVariables.GConst.STATION_COUNT; i++)
                 {
-                    //m_ActionRunThread[i].Cycled = false;
-                    if (i == 1) continue;
-                    if (m_CameraControl[i] != null) m_CameraControl[i].SetSoftwareTriggerMode();
+                    m_ActionRunThread[i].Cycled = false;
+                    
                     if (m_AIRunThread[i] != null) m_AIRunThread[i].Cycled = false;
                     //m_ConnectHeartbeatThreads[i].Cycled = false;
                 }

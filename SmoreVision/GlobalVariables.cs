@@ -15,8 +15,8 @@ namespace SmoreVision
         public static class GConst
         {
             //工位数量
-            public const int STATION_COUNT = 2;
-            public const int IMAGE_WINDOW_COUNT = 2;
+            public const int STATION_COUNT = 1;
+            public const int IMAGE_WINDOW_COUNT = 1;
 
             public const string IMAGE_SAVE_BASE_TIME_FORMAT = "HHmmss";
            
