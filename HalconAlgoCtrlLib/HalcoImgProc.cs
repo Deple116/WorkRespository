@@ -46,7 +46,7 @@ namespace HalconAlgoCtrlLib
         public void yfInit()
         {
             m_HDevengineClass = new HDevengineClass();
-
+            //
             HOperatorSet.SetSystem("clip_region", "false");
             hRegion.ReadObject(Application.StartupPath + "\\Algo\\Halcon\\settings\\yf\\CircleTest.hobj");
 
