@@ -131,7 +131,6 @@ namespace SmoreVision
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(799, 40);
             this.panel3.TabIndex = 0;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panel4
             // 
@@ -153,7 +152,6 @@ namespace SmoreVision
             this.label1.Size = new System.Drawing.Size(65, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "自动运行";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // smButtonRun
             // 

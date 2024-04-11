@@ -20,7 +20,7 @@ namespace HalconAlgoCtrlLib
         HImage hImageY = new HImage();
         HImage hImageZ = new HImage();
 
-        HTuple AcqHandle = new HTuple();
+        HTuple AcqHandle1 = new HTuple();
 
         public HRegion hRegion = new HRegion();
         HRegion FinRegion = new HRegion();
@@ -30,6 +30,15 @@ namespace HalconAlgoCtrlLib
         HDevengineClass m_HDevengineClass;
         HTuple ImageFiles;
         HObject obj;
+
+        #region 属性
+        public HObject ImgGray
+        {
+            get=> hImageGray;
+        }
+
+        #endregion
+
 
         #region 延锋3D
 
@@ -42,10 +51,9 @@ namespace HalconAlgoCtrlLib
 
             m_HDevengineClass.Init(Application.StartupPath + "\\Algo\\Halcon\\Main\\yf_test.hdev",
                                    Application.StartupPath + "\\Algo\\Halcon\\ThirdParty\\yf",
-                                   new HTuple("ReadImg", "yf_get_sort_regoion", "Preprocess", "yf_get_xyz_value", "open_acquisition", "yf_grab_3d_image", "close_acquisition"));
+                                   new HTuple("ReadImg", "yf_get_sort_regoion", "Preprocess", "yf_get_xyz_value", "open_acquisition", "yf_grab_3d_image", "yf_grab_image", "close_acquisition"));
             // m_ListBox.AddInfo("初始化成功");
-
-
+            OpenAcq();
 
         }
 
@@ -54,7 +62,7 @@ namespace HalconAlgoCtrlLib
             try
             {
                 m_HDevengineClass.Excute(4);
-                AcqHandle=m_HDevengineClass.GetTup(4, "AcqHandle");
+                AcqHandle1=m_HDevengineClass.GetTup(4, "AcqHandle");
                 return true;
             }
             catch (Exception ex)
@@ -120,7 +128,7 @@ namespace HalconAlgoCtrlLib
         {
             try
             {
-                m_HDevengineClass.SetTup(5, "AcqHandle", AcqHandle);
+                m_HDevengineClass.SetTup(5, "AcqHandle", AcqHandle1);
                 m_HDevengineClass.Excute(5);
                 hImageGray=m_HDevengineClass.GetImg(5, "ImageGray");
                 hImageX = m_HDevengineClass.GetImg(5, "ImageX");
@@ -134,6 +142,21 @@ namespace HalconAlgoCtrlLib
             }
         }
 
+        public bool GrabTestImg()
+        {
+            try
+            {
+                m_HDevengineClass.SetTup(6, "AcqHandle", AcqHandle1);
+                m_HDevengineClass.Excute(6);
+                hImageGray=m_HDevengineClass.GetImg(6, "Image");
+               // hImageGray.WriteImage("tiff", 0, "20240411.tif");
+                return true;
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            
+        }
         public Dictionary<string, string> ImgProcess()
         {
             Dictionary<string, string> dictemp = new Dictionary<string, string>();

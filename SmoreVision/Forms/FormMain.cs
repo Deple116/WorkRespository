@@ -154,7 +154,6 @@ namespace SmoreVision
 
             return familyFileList;
         }
-
         private void FormMain_Load(object sender, EventArgs e)
         {
             m_CameraControl = new CameraInterface[GlobalVariables.GConst.STATION_COUNT];
@@ -187,6 +186,7 @@ namespace SmoreVision
             CheckData();
 
             m_halconImgProc.StartDebug();
+            
 
             ////算法初始化
             //returnValue = (int)m_AISDKManage.Init(new AlgoInitInput() { modelPath = XMLConfig.SDK.Items[0].ConfigPath, useGpu = XMLConfig.SDK.Items[0].GPU, moduleId = XMLConfig.SDK.Items[0].SolutionId.ToString() });
@@ -227,16 +227,6 @@ namespace SmoreVision
             //    Log.Add($"当前型号:{strSN}!", Color.Green);
 
             //    ProductRecive2(new ProductInfo() { Product_Model = strSN, Product_content = "change" });
-
-            //    //获取当前组别
-            //    ushort returnGroup = m_SiemensPLCControl.ReadUshort("DB89.64.0");
-            //    SMLogWindow.OutLog($"当前组别:{returnGroup}!", Color.Green);
-            //    ProductRecive1(new ProductInfo() { Product_Model = "change", Product_content = returnGroup.ToString() });
-
-            //    //发送相机ready信号
-            //    m_SiemensPLCControl.WriteBool("DB89.0.0", true);
-            //}
-
 
             smInfoWindow1.AddConfig(XMLConfig);
 
@@ -868,11 +858,6 @@ namespace SmoreVision
             }
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// CCD1手动触发
         /// </summary>
@@ -880,85 +865,25 @@ namespace SmoreVision
         /// <param name="e"></param>
         private void smImageWindow1_TriggerCamera(object sender, EventArgs e)
         {
-            if (m_CameraControl[0] != null)
+            if (m_halconImgProc != null)
             {
-
-                m_CameraControl[0].SetSoftwareTriggerMode();
-                //if (GlobalVariables.Variables.dicProduct.ContainsKey(GlobalVariables.Variables.strCurrModel))
-                //{
-                //    this.m_CameraControl[0].SetExposure(float.Parse(GlobalVariables.Variables.dicProduct[GlobalVariables.Variables.strCurrModel][2]));
-                //    SMLogWindow.OutLog("model:" + GlobalVariables.Variables.strCurrModel + ":exp:" + GlobalVariables.Variables.dicProduct[GlobalVariables.Variables.strCurrModel][2], Color.Green, LogLevel.Info, false);
-                //}
-                //else
-                //{
-                //    this.m_CameraControl[0].SetExposure(11000f);
-                //    SMLogWindow.OutLog("model:error", Color.Green, LogLevel.Info, false);
-                //}
-
-                int returnValue = m_CameraControl[0].SoftWareTriggerOnce();
-                if (returnValue != ERROR_OK)
+                //bool returnValue = m_halconImgProc.yfOnlineExcute();
+                bool returnValue = m_halconImgProc.GrabTestImg();
+                if (!returnValue)
                 {
-                    SMLogWindow.OutLog($"CCD{m_CameraControl[0].CCDName}触发失败.", Color.Red);
+                    //SMLogWindow.OutLog($"CCD{m_CameraControl[0].CCDName}触发失败.", Color.Red);
                 }
                 else
                 {
-                    SMLogWindow.OutLog($"CCD{m_CameraControl[0].CCDName}触发成功.", Color.Green);
-                    Thread.Sleep(500);
-                    if (!m_CameraControl[0].IsEmpty())
-                    {
-                        CameraControlLibrary.CameraImageCallPack cameraImageCallPack = new CameraControlLibrary.CameraImageCallPack();
-                        cameraImageCallPack = m_CameraControl[0].TryDequeue();
-                        //SimplexTrrigerTask("TSTM", cameraImageCallPack.picture);
+                    //SMLogWindow.OutLog($"CCD{m_CameraControl[0].CCDName}触发成功.", Color.Green);
 
-
-                        if (true)//是否使用算法
-                        {
-                            AlgoProcess(cameraImageCallPack.picture);
-                        }
-                        else
-                        {
-                            //smImageWindow1.ImageShow(SDKExtendClass.IOcrResponse.VisualizeMat(cameraImageCallPack.picture, Scalar.LightGreen, "OK"));
-                        }
-
-                        //smImageWindow1.ImageShow(SDKExtendClass.IOcrResponse.VisualizeMat(mask, Scalar.Red, "NG"));
-                    }
-                }
+                    Mat mat = HalconToMat(m_halconImgProc.ImgGray);
+                    smImageWindow1.ImageShow(mat);
+                }            
             }
             else
             {
                 SMLogWindow.OutLog("CCD1没有初始化.", Color.Red);
-            }
-        }
-
-        /// <summary>
-        /// CCD2手动触发
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void smImageWindow2_TriggerCamera(object sender, EventArgs e)
-        {
-            if (m_CameraControl[1] != null)
-            {
-                int returnValue = m_CameraControl[1].SoftWareTriggerOnce();
-                if (returnValue != ERROR_OK)
-                {
-                    SMLogWindow.OutLog("CCD17触发失败.", Color.Red);
-                }
-                else
-                {
-                    SMLogWindow.OutLog("CCD17触发成功.", Color.Green);
-                    Thread.Sleep(1000);
-                    if (!m_CameraControl[1].IsEmpty())
-                    {
-                        CameraControlLibrary.CameraImageCallPack cameraImageCallPack = new CameraControlLibrary.CameraImageCallPack();
-                        cameraImageCallPack = m_CameraControl[1].TryDequeue();
-                        SimplexTrrigerTask("OCR", cameraImageCallPack.picture);
-                    }
-                }
-            }
-            else
-            {
-                SMLogWindow.OutLog("CCD17没有初始化.", Color.Red);
             }
         }
 
@@ -1065,58 +990,7 @@ namespace SmoreVision
                 });
             }
         }
-
-        private void ProductRecive1(ProductInfo proinfo)
-        {
-            //SMLogWindow.OutLog($"Model:{proinfo.Product_Model};Content:{proinfo.Product_content}.", Color.Green);
-
-            ////组别
-            //XMLConfig.Device.Items[0].EquipmentNumber = proinfo.Product_content;
-
-            //if (CSV.Instance[1].Data.Count > int.Parse(XMLConfig.Device.Items[0].EquipmentNumber))
-            //{
-            //    List<string> m_list = CSV.Instance[1].Data[int.Parse(XMLConfig.Device.Items[0].EquipmentNumber)];
-            //    string resText = m_list[2] + m_list[1] + DateTime.Now.ToString("MMdd") + m_list[3];
-            //    SMLogWindow.OutLog($"resText:{resText}", Color.Green);
-
-            //    //smInfoWindow1.EquipmentNumber = XMLConfig.Device.Items[0].EquipmentNumber + ";" + resText;
-            //}
-            //else
-            //{
-            //    SMLogWindow.OutLog($"当前组别索引:{int.Parse(XMLConfig.Device.Items[0].EquipmentNumber)};最大索引:{CSV.Instance[1].Data.Count}", Color.Red);
-            //    XMLConfig.Device.Items[0].EquipmentNumber = "0";
-            //    //smInfoWindow1.EquipmentNumber = "null";
-            //}
-
-
-
-        }
-
-        private void ProductRecive2(ProductInfo proinfo)
-        {
-            //SMLogWindow.OutLog($"Model:{proinfo.Product_Model};Content:{proinfo.Product_content}.", Color.Green);
-
-            ////型号信息
-            //string Temp = proinfo.Product_Model;
-            //SMLogWindow.OutLog($"Model:{Temp}", Color.Green);
-            //XMLConfig.Device.Items[0].ProductModel = Temp;
-            //smInfoWindow1.ProductModel = XMLConfig.Device.Items[0].ProductModel;
-            //if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv"))
-            //{
-            //    //加载产品组别
-            //    CSV.Instance[1].Read(AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv");
-            //    SMLogWindow.OutLog($"加载{AppDomain.CurrentDomain.BaseDirectory + $"\\Content\\{Temp}.csv"}刻字信息成功", Color.Green);
-            //    XMLConfig.Device.Items[0].EquipmentNumber = "0";
-            //    //smInfoWindow1.EquipmentNumber = "null";
-            //}
-            //else
-            //{
-            //    MessageBox.Show($"不存在{Temp}刻字信息");
-            //    SMLogWindow.OutLog($"不存在{Temp}刻字信息", Color.Red);
-            //}
-
-        }
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
             if (this.smImageWindow1.Visible)
@@ -1156,13 +1030,6 @@ namespace SmoreVision
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            iOControlClass.SendCmd(1, true);
-            Thread.Sleep(50);
-            //通道,状态
-            iOControlClass.SendCmd(0, true);
-        }
 
         private void SetDateMsg(string[] msg)
         {
@@ -1275,13 +1142,19 @@ namespace SmoreVision
             HTuple channels;
             HOperatorSet.CountChannels(halconImage, out channels);
             HOperatorSet.GetImagePointer1(halconImage, out ptr, out type, out w, out h);
-
             // 创建OpenCV的Mat对象
             Mat opencvImage = null;
             if (bGray)
             {
-                
-                opencvImage = new Mat(height, width, MatType.CV_16SC1, (IntPtr)ptr);
+                switch ((string)type[0])
+                {
+                    case "byte":
+                        opencvImage = new Mat(height, width, MatType.CV_8SC1, (IntPtr)ptr);
+                        break;
+                    case "uint2":
+                        opencvImage = new Mat(height, width, MatType.CV_16SC1, (IntPtr)ptr);
+                        break;
+                }
             }
             else
             {

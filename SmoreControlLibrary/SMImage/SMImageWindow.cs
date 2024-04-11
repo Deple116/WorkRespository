@@ -339,8 +339,8 @@ namespace SmoreControlLibrary.SMImage
         /// <param name="e"></param>
         private void 触发相机ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.TriggerCamera != null)
-                TriggerCamera(this, e);
+            //if (this.TriggerCamera != null)
+            //    TriggerCamera(this, e);
         }
 
         private void panel4_Click(object sender, EventArgs e)
