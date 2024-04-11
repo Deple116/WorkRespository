@@ -1,4 +1,6 @@
 ﻿using CameraControlLibrary;
+using HalconAlgoCtrlLib;
+using HalconDotNet;
 using SMLogControlLibrary;
 using SmoreControlLibrary;
 using SmoreControlLibrary.SMData;
@@ -26,7 +28,6 @@ namespace SmoreVision.BusinessClass
         public string Product_content;
     }
     public delegate void SendProductInfo(ProductInfo proinfo);
-
     public struct AlgoResult
     {
         public HObject oriImg;
@@ -54,8 +55,8 @@ namespace SmoreVision.BusinessClass
         bool bTri = true;
         bool bchange = true;
         public SendProductInfo m_sendProduct;
+        public SendAlgoResult m_sendAlgoResult;
 
-       
         public ActionRunThread(CameraInterface _CameraControl, SiemensPLCControl _siemensPLCControl)
         {
             m_CameraControl = _CameraControl;

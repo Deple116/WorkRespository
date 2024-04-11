@@ -207,9 +207,6 @@ namespace SmoreVision
 
             smButtonRun.Enabled = true;
 
-
-
-            #region plc_ready
             ////CCD15 ready信号
             //returnValue = m_SiemensPLCControl.WriteBool("DB2000.0.1", true);
             //if (returnValue != ERROR_OK)
