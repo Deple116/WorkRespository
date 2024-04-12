@@ -19,12 +19,12 @@ namespace SmoreVision
             public const int IMAGE_WINDOW_COUNT = 1;
 
             public const string IMAGE_SAVE_BASE_TIME_FORMAT = "HHmmss";
-           
+
         }
 
         public static class Variables
         {
-            public static bool bSpecial=false;
+            public static bool bSpecial = false;
             public static bool bAlgo = false;
             public static bool bManual = false;
             public static string[] dateMsg = null;
@@ -50,11 +50,34 @@ namespace SmoreVision
             public static string BatchNumber = "1";
         }
 
-        public class TimeCal
+        public static class StaticMethod
         {
-          public static  Stopwatch swatch = new Stopwatch();
+            public static List<string> GetSpecPath(string path)
+            {
+                List<string> templist = new List<string>();
 
+                string[] splitFold = path.Split(new char[] { '\\' });
+
+                string lastItem = splitFold[splitFold.Length-1];
+
+                bool bgray = lastItem.Contains("Gray");
+                bool bHeight = lastItem.Contains("Height");
+
+                if (!bgray&&!bHeight) { return null; }
+                string temp = "";
+                if (bgray) temp=lastItem.Replace("Gray", "Height");
+                if (bHeight) temp=lastItem.Replace("Height", "Gray");
+
+                splitFold[splitFold.Length-1]=temp;
+                string strRes = string.Join("\\", splitFold);
+
+                templist.Add(bHeight ? path : strRes);
+                templist.Add(bgray ? path : strRes);
+                return templist;
+            }
         }
+
+
 
 
     }

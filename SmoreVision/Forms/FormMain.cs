@@ -405,26 +405,17 @@ namespace SmoreVision
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "请选择图片文件夹";
             dialog.Filter = "图片文件(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp;*.tif";
-            dialog.InitialDirectory = Application.StartupPath+"\\Algo";
+            // dialog.InitialDirectory = Application.StartupPath+"\\Algo";
+            dialog.InitialDirectory = XMLConfig.SaveImage.Items[2].Path;
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // m_SaveImageThread.StartThread();
 
-                HObject halconImage = new HObject();
-                HOperatorSet.ReadImage(out halconImage, dialog.FileName);
-
-                List<string> listTemp=m_halconImgProc.yfReadImgFolder();
-
-                int indexof=listTemp.IndexOf(dialog.FileName);
-
-             
-                Mat mat = HalconToMat(m_halconImgProc.yfGetImg(indexof % 2 == 0 ? indexof+1: indexof));
-                //Mat mat = Cv2.ImRead(dialog.FileName, ImreadModes.Unchanged);
+                m_halconImgProc.SetImagesPath(GlobalVariables.StaticMethod.GetSpecPath(dialog.FileName));
+                Mat mat;// = HalconToMat(m_halconImgProc.yfGetGrayImg());
 
                 SMLogWindow.OutLog($"SimplexTestTask:path:{dialog.FileName}", Color.Green);
-                //Mat srcMat = mat.Clone();
                 string fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(dialog.FileName);
-                if (mat != null)
+                //if (mat != null)
                 {
                     SimplexTask = Task.Factory.StartNew(() =>
                     {
@@ -434,25 +425,25 @@ namespace SmoreVision
                             case "CCD1":
                                 {
 
-                                    if(yfImgProc(indexof % 2 == 0 ? indexof + 1 : indexof))
+                                    if(yfImgProc())
                                     {
 
                                         mat = HalconToMat(m_halconImgProc.GetMaskImg(),false);
                                         SMDataWindow.AddData(true);
                                         smImageWindow1.ImageShow(mat);
                                     }
-                                    ////存图
-                                    //SaveImage m_SaveImage = new SaveImage();
-                                    //m_SaveImage.stationName = _taskName;
-                                    //m_SaveImage.oriHeightImg = m_halconImgProc.ImgHeight;
-                                    //m_SaveImage.oriGrayImg = m_halconImgProc.ImgGray;
-                                    //m_SaveImage.result = true;
+                                    //存图
+                                    SaveImage m_SaveImage = new SaveImage();
+                                    m_SaveImage.stationName = _taskName;
+                                    m_SaveImage.oriHeightImg = m_halconImgProc.ImgHeight;
+                                    m_SaveImage.oriGrayImg = m_halconImgProc.ImgGray;
+                                    m_SaveImage.result = true;
 
-                                    //m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
-                                    //m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
+                                    m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
+                                    m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
 
 
-                                    // AlgoProcess(mat);
+                                    //AlgoProcess(mat);
                                 }
                                 break;
                             default:
@@ -469,13 +460,13 @@ namespace SmoreVision
         Dictionary<string, string> dicShowData = new Dictionary<string, string>();
         string stralgoRes = "";
         string NG_Algo = "";
-        private bool yfImgProc(int index)
+        private bool yfImgProc()
         {
             try
             {
-
+                
                 Dictionary<string, string> dicTemp = new Dictionary<string, string>();
-                if (m_halconImgProc.yfOfflineExcute(index))
+                if (m_halconImgProc.yfOfflineExcute())
                 {
                     dicTemp=m_halconImgProc.ImgProcess();
                     DataResProc(ref dicTemp);

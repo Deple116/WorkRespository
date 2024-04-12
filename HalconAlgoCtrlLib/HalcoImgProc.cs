@@ -31,6 +31,8 @@ namespace HalconAlgoCtrlLib
         HTuple ImageFiles;
         HObject obj;
 
+        List<string> HGimageFiles=new List<string>();
+
         #region 属性
         public string CCDName { get; set; } = "CCD1";
         public HObject ImgGray
@@ -95,28 +97,63 @@ namespace HalconAlgoCtrlLib
             //m_ListBox.AddInfo("加载成功");
             return m_list;
         }
-        public HObject yfGetImg(int index)
+
+        public List<string> yfReadImgFolder(string folderPath)
         {
-            HObject objTemp;
-            HOperatorSet.ReadImage(out objTemp, (HTuple)ImageFiles[index]);
-            hImageGray.ReadImage((HTuple)ImageFiles[index]);
+            //yfcmb.Items.Clear();
+            //HTuple ImageFiles;
+
+            List<string> m_list = new List<string>();
+
+            m_HDevengineClass.SetTup(0, "ImagePath", folderPath);
+            m_HDevengineClass.Excute(0);
+            ImageFiles = m_HDevengineClass.GetTup(0, "ImageFiles");
+
+            int inum = ImageFiles.Length;
+            for (int i = 0; i < inum; i++)
+            {
+                m_list.Add(ImageFiles[i]);
+                //yfcmb.Items.Add(i);
+            }
+            //yfcmb.SelectedIndex = 0;
+            //m_ListBox.AddInfo("加载成功");
+            return m_list;
+        }
+
+        public bool SetImagesPath(List<string> path)
+        {
+            if (path.Count!=2) return false;
+            HGimageFiles.Clear();
+            HGimageFiles =path;
+            return true;
+        }
+
+        /// <summary>
+        /// index:0=height,1=gray
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public HObject yfGetGrayImg()
+        {
+            if(HGimageFiles.Count!=2) return null;
+            hImageGray.ReadImage((HTuple)HGimageFiles[1]);
             return hImageGray;
         }
-        public bool yfOfflineExcute(int index)
+        public bool yfOfflineExcute()
         {
 
             try
             {
                 //  int index = yfcmb.SelectedIndex;
-
-                hImageHeight.ReadImage((HTuple)ImageFiles[index-1]);
+                if (HGimageFiles.Count!=2) return false;
+                hImageHeight.ReadImage((HTuple)HGimageFiles[0]);
                 m_HDevengineClass.SetObj(2, "HeightImg", hImageHeight);
                 m_HDevengineClass.Excute(2);
                 hImageX = m_HDevengineClass.GetImg(2, "ImageX");
                 hImageY = m_HDevengineClass.GetImg(2, "ImageY");
                 hImageZ = m_HDevengineClass.GetImg(2, "ImageZ");
 
-                hImageGray.ReadImage((HTuple)ImageFiles[index]);
+                hImageGray.ReadImage((HTuple)HGimageFiles[1]);
 
                 // m_ListBox.AddInfo("执行成功");
                 return true;
