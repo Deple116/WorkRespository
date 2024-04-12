@@ -369,7 +369,7 @@ namespace SmoreVision
         {
             try
             {
-                SimplexTestTask("TSTM");
+                SimplexTestTask("CCD1");
             }
             catch (Exception ex)
             {
@@ -431,7 +431,7 @@ namespace SmoreVision
 
                         switch (_taskName)
                         {
-                            case "TSTM":
+                            case "CCD1":
                                 {
 
                                     if(yfImgProc(indexof % 2 == 0 ? indexof + 1 : indexof))
@@ -441,8 +441,16 @@ namespace SmoreVision
                                         SMDataWindow.AddData(true);
                                         smImageWindow1.ImageShow(mat);
                                     }
-                                    
-                                    
+                                    ////存图
+                                    //SaveImage m_SaveImage = new SaveImage();
+                                    //m_SaveImage.stationName = _taskName;
+                                    //m_SaveImage.oriHeightImg = m_halconImgProc.ImgHeight;
+                                    //m_SaveImage.oriGrayImg = m_halconImgProc.ImgGray;
+                                    //m_SaveImage.result = true;
+
+                                    //m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
+                                    //m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
+
 
                                     // AlgoProcess(mat);
                                 }
@@ -794,83 +802,7 @@ namespace SmoreVision
             smImageWindow1.ClearProduceData();
             //smImageWindow2.ClearProduceData();
         }
-
-        /// <summary>
-        /// 手动触发相机推理单张图片任务
-        /// </summary>
-        /// <param name="_taskName">CLS[进行分类算法推理]OCR[进行OCR算法推理]</param>
-        private void SimplexTrrigerTask(string _taskName, Mat mat)
-        {
-            int returnValue = 0;
-            m_SaveImage = new SaveImage();
-            Mat srcMat = mat.Clone();
-            if (mat != null)
-            {
-                SimplexTrigerTask = Task.Factory.StartNew(() =>
-                {
-
-                    switch (_taskName)
-                    {
-                        case "CLS":
-                            {
-                                string clsResult = "";
-                                returnValue = Error_OK; //m_AISDKManage.CLSRun(mat, ref clsResult);
-                                if (returnValue != Error_OK)
-                                {
-                                    SMLogWindow.OutLog("CLS算法推理失败.", Color.Red);
-                                }
-                                else
-                                {
-                                    if (clsResult != "")
-                                    {
-                                        SMLogWindow.OutLog($"CLS算法推理成功.推理结果:{clsResult}", Color.Green);
-                                        if (smImageWindow1.InvokeRequired)
-                                        {
-                                            if (clsResult.Contains("OK"))
-                                            {
-                                                BeginInvoke(new Action<bool>(smImageWindow1.ResultShow), true);
-                                                SMDataWindow.AddData(true);
-                                                // smImageWindow1.ImageShow(SDKExtendClass.IOcrResponse.VisualizeMat(mat, Scalar.LightGreen, "OK"));
-
-                                                //存图
-                                                m_SaveImage.stationName = "CCD1";
-                                                m_SaveImage.picture = srcMat;
-                                                m_SaveImage.result = true;
-                                                // m_SaveImage.mask = SDKExtendClass.IOcrResponse.VisualizeMat(mat, Scalar.LightGreen, "OK");
-                                                m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
-                                                m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
-                                            }
-                                            else
-                                            {
-                                                BeginInvoke(new Action<bool>(smImageWindow1.ResultShow), false);
-                                                SMDataWindow.AddData(false);
-                                                // smImageWindow1.ImageShow(SDKExtendClass.IOcrResponse.VisualizeMat(mat, Scalar.Red, "NG"));
-
-                                                //存图
-                                                m_SaveImage.stationName = "CCD1";
-                                                m_SaveImage.picture = srcMat;
-                                                m_SaveImage.result = false;
-                                                //m_SaveImage.mask = SDKExtendClass.IOcrResponse.VisualizeMat(mat, Scalar.Red, "NG");
-                                                m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
-                                                m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
-                                            }
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        SMLogWindow.OutLog($"CLS算法推理失败.推理结果为:NULL", Color.Red);
-                                    }
-                                }
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                });
-            }
-        }
-       
+      
         private void button1_Click(object sender, EventArgs e)
         {
             if (this.smImageWindow1.Visible)
@@ -909,7 +841,6 @@ namespace SmoreVision
             BtnOCRState = !BtnOCRState;
 
         }
-
 
         private void SetDateMsg(string[] msg)
         {

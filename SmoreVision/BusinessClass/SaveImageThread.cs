@@ -77,8 +77,8 @@ namespace SmoreVision.BusinessClass
                     string origNGRootDir = m_XMLConfig.SaveImage.Items[3].Path + $"\\{data}\\{strProduct}\\NG原图";
 
                     
-                    if (!File.Exists(labelOKRootDir)) Directory.CreateDirectory(labelOKRootDir);
-                    if (!File.Exists(labelNGRootDir)) Directory.CreateDirectory(labelNGRootDir);
+                    //if (!File.Exists(labelOKRootDir)) Directory.CreateDirectory(labelOKRootDir);
+                    //if (!File.Exists(labelNGRootDir)) Directory.CreateDirectory(labelNGRootDir);
                     if (!File.Exists(origOKRootDir))  Directory.CreateDirectory(origOKRootDir);
                     if (!File.Exists(origNGRootDir))  Directory.CreateDirectory(origNGRootDir);
 
@@ -105,13 +105,13 @@ namespace SmoreVision.BusinessClass
                         }
                         if (m_XMLConfig.SaveImage.Items[2].SaveEnable)
                         {
-                            if (saveImage.picture != null)
+                            if (saveImage.oriHeightImg != null)
                             {
                                 if (m_XMLConfig.SaveImage.Items[2].ImageType == ".png") Params = new ImageEncodingParam(ImwriteFlags.PngCompression, 9);
                                 if (m_XMLConfig.SaveImage.Items[2].ImageType == ".jpg") Params = new ImageEncodingParam(ImwriteFlags.JpegQuality, 50);
                                 //saveImage.picture.ImWrite(origOKRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[2].ImageType, Params);
-                                HOperatorSet.WriteImage(saveImage.oriHeightImg, m_XMLConfig.SaveImage.Items[2].ImageType, 0, origOKRootDir + "\\" + baseName+"_Height" + m_XMLConfig.SaveImage.Items[2].ImageType);
-                                HOperatorSet.WriteImage(saveImage.oriGrayImg, m_XMLConfig.SaveImage.Items[2].ImageType, 0, origOKRootDir + "\\" + baseName+"_Gray" + m_XMLConfig.SaveImage.Items[2].ImageType);
+                                HOperatorSet.WriteImage(saveImage.oriHeightImg, m_XMLConfig.SaveImage.Items[2].ImageType.Remove(0,1), 0, origOKRootDir + "\\" + baseName+"_Height" + m_XMLConfig.SaveImage.Items[2].ImageType);
+                                HOperatorSet.WriteImage(saveImage.oriGrayImg, m_XMLConfig.SaveImage.Items[2].ImageType.Remove(0, 1), 0, origOKRootDir + "\\" + baseName+"_Gray" + m_XMLConfig.SaveImage.Items[2].ImageType);
                             } 
                         }
                     }
@@ -132,17 +132,16 @@ namespace SmoreVision.BusinessClass
                         }
                         if (m_XMLConfig.SaveImage.Items[3].SaveEnable)
                         {
-                            if (saveImage.picture!=null)
+                         
+                            if (saveImage.oriHeightImg != null) 
                             {
-                                if (saveImage.picture != null) 
-                                {
-                                    if (m_XMLConfig.SaveImage.Items[3].ImageType == ".png") Params = new ImageEncodingParam(ImwriteFlags.PngCompression, 9);
-                                    if (m_XMLConfig.SaveImage.Items[3].ImageType == ".jpg") Params = new ImageEncodingParam(ImwriteFlags.JpegQuality, 50);
-                                    //saveImage.picture.ImWrite(origNGRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[3].ImageType, Params);
-                                    HOperatorSet.WriteImage(saveImage.oriHeightImg, m_XMLConfig.SaveImage.Items[3].ImageType, 0, origNGRootDir + "\\" + baseName+"_Height" + m_XMLConfig.SaveImage.Items[3].ImageType);
-                                    HOperatorSet.WriteImage(saveImage.oriGrayImg, m_XMLConfig.SaveImage.Items[3].ImageType, 0, origNGRootDir + "\\" + baseName+"_Gray" + m_XMLConfig.SaveImage.Items[3].ImageType);
-                                } 
-                            }
+                                if (m_XMLConfig.SaveImage.Items[3].ImageType == ".png") Params = new ImageEncodingParam(ImwriteFlags.PngCompression, 9);
+                                if (m_XMLConfig.SaveImage.Items[3].ImageType == ".jpg") Params = new ImageEncodingParam(ImwriteFlags.JpegQuality, 50);
+                                //saveImage.picture.ImWrite(origNGRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[3].ImageType, Params);
+                                HOperatorSet.WriteImage(saveImage.oriHeightImg, m_XMLConfig.SaveImage.Items[3].ImageType.Remove(0,1), 0, origNGRootDir + "\\" + baseName+"_Height" + m_XMLConfig.SaveImage.Items[3].ImageType);
+                                HOperatorSet.WriteImage(saveImage.oriGrayImg, m_XMLConfig.SaveImage.Items[3].ImageType.Remove(0, 1), 0, origNGRootDir + "\\" + baseName+"_Gray" + m_XMLConfig.SaveImage.Items[3].ImageType);
+                            } 
+
                         }
                     }
 
