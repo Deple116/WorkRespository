@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SmoreVision.HardwareControl.ImageType;
+using HalconDotNet;
 
 namespace SmoreVision.BusinessClass
 {
@@ -97,7 +98,8 @@ namespace SmoreVision.BusinessClass
                             {
                                 if(m_XMLConfig.SaveImage.Items[0].ImageType==".png") Params = new ImageEncodingParam(ImwriteFlags.PngCompression, 9);
                                 if(m_XMLConfig.SaveImage.Items[0].ImageType == ".jpg") Params = new ImageEncodingParam(ImwriteFlags.JpegQuality,50);
-                                saveImage.mask.ImWrite(labelOKRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[0].ImageType, Params);
+                                //saveImage.mask.ImWrite(labelOKRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[0].ImageType, Params);
+                                
                             }
                                 
                         }
@@ -107,7 +109,9 @@ namespace SmoreVision.BusinessClass
                             {
                                 if (m_XMLConfig.SaveImage.Items[2].ImageType == ".png") Params = new ImageEncodingParam(ImwriteFlags.PngCompression, 9);
                                 if (m_XMLConfig.SaveImage.Items[2].ImageType == ".jpg") Params = new ImageEncodingParam(ImwriteFlags.JpegQuality, 50);
-                                saveImage.picture.ImWrite(origOKRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[2].ImageType, Params);
+                                //saveImage.picture.ImWrite(origOKRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[2].ImageType, Params);
+                                HOperatorSet.WriteImage(saveImage.oriHeightImg, m_XMLConfig.SaveImage.Items[2].ImageType, 0, origOKRootDir + "\\" + baseName+"_Height" + m_XMLConfig.SaveImage.Items[2].ImageType);
+                                HOperatorSet.WriteImage(saveImage.oriGrayImg, m_XMLConfig.SaveImage.Items[2].ImageType, 0, origOKRootDir + "\\" + baseName+"_Gray" + m_XMLConfig.SaveImage.Items[2].ImageType);
                             } 
                         }
                     }
@@ -121,7 +125,7 @@ namespace SmoreVision.BusinessClass
                                 {
                                     if (m_XMLConfig.SaveImage.Items[1].ImageType == ".png") Params = new ImageEncodingParam(ImwriteFlags.PngCompression, 9);
                                     if (m_XMLConfig.SaveImage.Items[1].ImageType == ".jpg") Params = new ImageEncodingParam(ImwriteFlags.JpegQuality, 50);
-                                    saveImage.mask.ImWrite(labelNGRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[1].ImageType, Params);
+                                    //saveImage.mask.ImWrite(labelNGRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[1].ImageType, Params);
                                 }
                                     
                             }
@@ -134,7 +138,9 @@ namespace SmoreVision.BusinessClass
                                 {
                                     if (m_XMLConfig.SaveImage.Items[3].ImageType == ".png") Params = new ImageEncodingParam(ImwriteFlags.PngCompression, 9);
                                     if (m_XMLConfig.SaveImage.Items[3].ImageType == ".jpg") Params = new ImageEncodingParam(ImwriteFlags.JpegQuality, 50);
-                                    saveImage.picture.ImWrite(origNGRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[3].ImageType, Params);
+                                    //saveImage.picture.ImWrite(origNGRootDir + "\\" + baseName + m_XMLConfig.SaveImage.Items[3].ImageType, Params);
+                                    HOperatorSet.WriteImage(saveImage.oriHeightImg, m_XMLConfig.SaveImage.Items[3].ImageType, 0, origNGRootDir + "\\" + baseName+"_Height" + m_XMLConfig.SaveImage.Items[3].ImageType);
+                                    HOperatorSet.WriteImage(saveImage.oriGrayImg, m_XMLConfig.SaveImage.Items[3].ImageType, 0, origNGRootDir + "\\" + baseName+"_Gray" + m_XMLConfig.SaveImage.Items[3].ImageType);
                                 } 
                             }
                         }

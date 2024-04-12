@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HalconDotNet;
 
 namespace SmoreVision.HardwareControl
 {
@@ -21,6 +22,9 @@ namespace SmoreVision.HardwareControl
         {
             public Mat picture;
             public Mat mask;
+            public HObject oriHeightImg;
+            public HObject oriGrayImg;
+
             public bool result;
             public string stationName;
             public string ProductModel;

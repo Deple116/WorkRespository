@@ -1,6 +1,8 @@
-﻿using CameraControlLibrary;
+﻿using AlgoControlLibrary.AlgoBaseFactory;
+using CameraControlLibrary;
 using HalconAlgoCtrlLib;
 using HalconDotNet;
+using OpenCvSharp;
 using SMLogControlLibrary;
 using SmoreControlLibrary;
 using SmoreControlLibrary.SMData;
@@ -19,6 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SmoreControlLibrary.SystemConfig.JsonFileParse;
+using static SmoreVision.HardwareControl.ImageType;
 
 namespace SmoreVision.BusinessClass
 {
@@ -51,16 +54,19 @@ namespace SmoreVision.BusinessClass
         private HalcoImgProc m_halconImgProc;
         private SiemensPLCControl m_SiemensPLCControl;
         private XMLConfigParse m_XMLConfigParse;
+        private SaveImageThread m_SaveImageThread = null; 
         private Task m_ActionThreadProcess;
         bool bTri = true;
         bool bchange = true;
         public SendProductInfo m_sendProduct;
         public SendAlgoResult m_sendAlgoResult;
 
-        public ActionRunThread(CameraInterface _CameraControl, SiemensPLCControl _siemensPLCControl)
+        public ActionRunThread(HalcoImgProc _halcoImgProc, SiemensPLCControl _siemensPLCControl, SaveImageThread _saveImageThread ,ref XMLConfigParse xMLConfigParse)
         {
-            m_CameraControl = _CameraControl;
+            m_halconImgProc = _halcoImgProc;
             m_SiemensPLCControl = _siemensPLCControl;
+            m_XMLConfigParse=xMLConfigParse;
+            m_SaveImageThread=_saveImageThread;
         }
 
         public int StartThread()
@@ -94,11 +100,18 @@ namespace SmoreVision.BusinessClass
                                     //if(m_halconImgProc.GrabTestImg())
                                     {
                                         //图像处理
-                                      Dictionary<string,string> dicTemp=  m_halconImgProc.ImgProcess();
-
-                                        m_sendAlgoResult(new AlgoResult() { oriImg=m_halconImgProc.ImgGray,dicAlgoRes=dicTemp,bAlgoResult=false });
+                                      Dictionary<string,string> dicTemp=  m_halconImgProc.ImgProcess();                                   
+                                      m_sendAlgoResult(new AlgoResult() { oriImg=m_halconImgProc.ImgGray,dicAlgoRes=dicTemp,bAlgoResult=false });
                                     }
+                                    //存图
+                                    SaveImage m_SaveImage = new SaveImage();
+                                    m_SaveImage.stationName = "CCD1";
+                                    m_SaveImage.oriHeightImg = m_halconImgProc.ImgHeight;
+                                    m_SaveImage.oriGrayImg = m_halconImgProc.ImgGray;
+                                    m_SaveImage.result = true;
                                     
+                                    m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
+                                    m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
                                 }
 
                                 //if (!m_SiemensPLCControl.ReadBool("DB89.60.0") && !bTri)

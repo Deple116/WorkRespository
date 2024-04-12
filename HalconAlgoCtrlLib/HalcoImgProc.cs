@@ -37,7 +37,10 @@ namespace HalconAlgoCtrlLib
         {
             get=> hImageGray;
         }
-
+        public HObject ImgHeight
+        {
+            get => hImageHeight;
+        }
         #endregion
 
 
@@ -150,7 +153,7 @@ namespace HalconAlgoCtrlLib
                 m_HDevengineClass.SetTup(6, "AcqHandle", AcqHandle1);
                 m_HDevengineClass.Excute(6);
                 hImageGray=m_HDevengineClass.GetImg(6, "Image");
-               // hImageGray.WriteImage("tiff", 0, "20240411.tif");
+                //hImageGray.WriteImage("tiff", 0, "20240412.tif");
                 return true;
             }catch(Exception ex)
             {
