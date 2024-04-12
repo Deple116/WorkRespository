@@ -17,6 +17,7 @@ namespace SmoreControlLibrary.SMForm
         private SMLightSet lightSet = null;
         private SMPLCSet PlcSet = null;
         private SMCamSet CamSet=null;
+        private SMAlgoSet AlgoSet = null;
         private SMDeviceSet DeviceSet = null;
         private SMProductInfoSet productInfoSet = null;
         private SMSaveSet saveSet = null;
@@ -83,6 +84,7 @@ namespace SmoreControlLibrary.SMForm
             lightSet = new SMLightSet();
             PlcSet = new SMPLCSet();
             CamSet = new SMCamSet();
+            AlgoSet=new SMAlgoSet();
             productInfoSet = new SMProductInfoSet();
             DeviceSet = new SMDeviceSet();
           saveSet = new SMSaveSet();
@@ -96,7 +98,7 @@ namespace SmoreControlLibrary.SMForm
             //m_listUserControl.Add(lightSet);
             m_listUserControl.Add(PlcSet);
             m_listUserControl.Add(CamSet);
-            
+            m_listUserControl.Add(AlgoSet);
             //m_listUserControl.Add(productInfoSet);
             m_listUserControl.Add(DeviceSet); 
             m_listUserControl.Add(saveSet);
@@ -148,6 +150,12 @@ namespace SmoreControlLibrary.SMForm
                     form.Hide();
                 }
             }
+        }
+
+        private void btnAlgoSet_Click(object sender, EventArgs e)
+        {
+            DisplayButton(btnAlgoSet, m_listButton);
+            ShowUserControl(AlgoSet);
         }
     }
 }

@@ -33,9 +33,10 @@
             this.smButton2 = new SmoreControlLibrary.SMButton();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.buttonCountSet = new System.Windows.Forms.Button();
-            this.buttonProductInfoSet = new System.Windows.Forms.Button();
             this.buttonLightSet = new System.Windows.Forms.Button();
+            this.btnAlgoSet = new System.Windows.Forms.Button();
             this.buttonThresholdSet = new System.Windows.Forms.Button();
+            this.buttonProductInfoSet = new System.Windows.Forms.Button();
             this.buttonSaveSet = new System.Windows.Forms.Button();
             this.buttonSystemSet = new System.Windows.Forms.Button();
             this.panelFormSetHome = new System.Windows.Forms.Panel();
@@ -50,8 +51,9 @@
             this.panelHead.Controls.Add(this.smButton2);
             this.panelHead.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHead.Location = new System.Drawing.Point(0, 0);
+            this.panelHead.Margin = new System.Windows.Forms.Padding(4);
             this.panelHead.Name = "panelHead";
-            this.panelHead.Size = new System.Drawing.Size(1030, 31);
+            this.panelHead.Size = new System.Drawing.Size(1373, 39);
             this.panelHead.TabIndex = 0;
             // 
             // lbl
@@ -62,8 +64,9 @@
             this.lbl.ForeColor = System.Drawing.Color.Black;
             this.lbl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbl.Location = new System.Drawing.Point(0, 0);
+            this.lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(998, 31);
+            this.lbl.Size = new System.Drawing.Size(1330, 39);
             this.lbl.TabIndex = 4;
             this.lbl.Text = "设置";
             this.lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,12 +86,13 @@
             this.smButton2.IsRadius = false;
             this.smButton2.IsShowRect = false;
             this.smButton2.IsShowTips = false;
-            this.smButton2.Location = new System.Drawing.Point(998, 0);
+            this.smButton2.Location = new System.Drawing.Point(1330, 0);
+            this.smButton2.Margin = new System.Windows.Forms.Padding(5);
             this.smButton2.MouseUpColor = System.Drawing.Color.Empty;
             this.smButton2.Name = "smButton2";
             this.smButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.smButton2.RectWidth = 1;
-            this.smButton2.Size = new System.Drawing.Size(32, 31);
+            this.smButton2.Size = new System.Drawing.Size(43, 39);
             this.smButton2.TabIndex = 3;
             this.smButton2.TabStop = false;
             this.smButton2.TipsText = "";
@@ -98,15 +102,17 @@
             // 
             this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(227)))), ((int)(((byte)(231)))));
             this.panelLeft.Controls.Add(this.buttonCountSet);
-            this.panelLeft.Controls.Add(this.buttonProductInfoSet);
             this.panelLeft.Controls.Add(this.buttonLightSet);
+            this.panelLeft.Controls.Add(this.btnAlgoSet);
             this.panelLeft.Controls.Add(this.buttonThresholdSet);
+            this.panelLeft.Controls.Add(this.buttonProductInfoSet);
             this.panelLeft.Controls.Add(this.buttonSaveSet);
             this.panelLeft.Controls.Add(this.buttonSystemSet);
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 31);
+            this.panelLeft.Location = new System.Drawing.Point(0, 39);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(4);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(127, 651);
+            this.panelLeft.Size = new System.Drawing.Size(169, 813);
             this.panelLeft.TabIndex = 1;
             // 
             // buttonCountSet
@@ -118,30 +124,14 @@
             this.buttonCountSet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonCountSet.Image = global::SmoreControlLibrary.Properties.Resources.统计;
             this.buttonCountSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonCountSet.Location = new System.Drawing.Point(0, 175);
+            this.buttonCountSet.Location = new System.Drawing.Point(0, 264);
+            this.buttonCountSet.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCountSet.Name = "buttonCountSet";
-            this.buttonCountSet.Size = new System.Drawing.Size(127, 35);
+            this.buttonCountSet.Size = new System.Drawing.Size(169, 44);
             this.buttonCountSet.TabIndex = 8;
             this.buttonCountSet.Text = "统计信息";
             this.buttonCountSet.UseVisualStyleBackColor = false;
             this.buttonCountSet.Click += new System.EventHandler(this.buttonCountSet_Click);
-            // 
-            // buttonProductInfoSet
-            // 
-            this.buttonProductInfoSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(167)))), ((int)(((byte)(182)))));
-            this.buttonProductInfoSet.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonProductInfoSet.FlatAppearance.BorderSize = 0;
-            this.buttonProductInfoSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonProductInfoSet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonProductInfoSet.Image = global::SmoreControlLibrary.Properties.Resources.物料;
-            this.buttonProductInfoSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonProductInfoSet.Location = new System.Drawing.Point(0, 140);
-            this.buttonProductInfoSet.Name = "buttonProductInfoSet";
-            this.buttonProductInfoSet.Size = new System.Drawing.Size(127, 35);
-            this.buttonProductInfoSet.TabIndex = 7;
-            this.buttonProductInfoSet.Text = "设备信息";
-            this.buttonProductInfoSet.UseVisualStyleBackColor = false;
-            this.buttonProductInfoSet.Click += new System.EventHandler(this.buttonProductInfoSet_Click);
             // 
             // buttonLightSet
             // 
@@ -152,13 +142,32 @@
             this.buttonLightSet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonLightSet.Image = global::SmoreControlLibrary.Properties.Resources.点光源;
             this.buttonLightSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonLightSet.Location = new System.Drawing.Point(0, 105);
+            this.buttonLightSet.Location = new System.Drawing.Point(0, 220);
+            this.buttonLightSet.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLightSet.Name = "buttonLightSet";
-            this.buttonLightSet.Size = new System.Drawing.Size(127, 35);
+            this.buttonLightSet.Size = new System.Drawing.Size(169, 44);
             this.buttonLightSet.TabIndex = 6;
             this.buttonLightSet.Text = "PLC设置";
             this.buttonLightSet.UseVisualStyleBackColor = false;
             this.buttonLightSet.Click += new System.EventHandler(this.buttonLightSet_Click);
+            // 
+            // btnAlgoSet
+            // 
+            this.btnAlgoSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(167)))), ((int)(((byte)(182)))));
+            this.btnAlgoSet.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAlgoSet.FlatAppearance.BorderSize = 0;
+            this.btnAlgoSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAlgoSet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAlgoSet.Image = global::SmoreControlLibrary.Properties.Resources.物料;
+            this.btnAlgoSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAlgoSet.Location = new System.Drawing.Point(0, 176);
+            this.btnAlgoSet.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAlgoSet.Name = "btnAlgoSet";
+            this.btnAlgoSet.Size = new System.Drawing.Size(169, 44);
+            this.btnAlgoSet.TabIndex = 9;
+            this.btnAlgoSet.Text = "算法设置";
+            this.btnAlgoSet.UseVisualStyleBackColor = false;
+            this.btnAlgoSet.Click += new System.EventHandler(this.btnAlgoSet_Click);
             // 
             // buttonThresholdSet
             // 
@@ -169,13 +178,32 @@
             this.buttonThresholdSet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonThresholdSet.Image = global::SmoreControlLibrary.Properties.Resources.默认_阈值告警;
             this.buttonThresholdSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonThresholdSet.Location = new System.Drawing.Point(0, 70);
+            this.buttonThresholdSet.Location = new System.Drawing.Point(0, 132);
+            this.buttonThresholdSet.Margin = new System.Windows.Forms.Padding(4);
             this.buttonThresholdSet.Name = "buttonThresholdSet";
-            this.buttonThresholdSet.Size = new System.Drawing.Size(127, 35);
+            this.buttonThresholdSet.Size = new System.Drawing.Size(169, 44);
             this.buttonThresholdSet.TabIndex = 5;
             this.buttonThresholdSet.Text = "相机设置";
             this.buttonThresholdSet.UseVisualStyleBackColor = false;
             this.buttonThresholdSet.Click += new System.EventHandler(this.buttonThresholdSet_Click);
+            // 
+            // buttonProductInfoSet
+            // 
+            this.buttonProductInfoSet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(167)))), ((int)(((byte)(182)))));
+            this.buttonProductInfoSet.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonProductInfoSet.FlatAppearance.BorderSize = 0;
+            this.buttonProductInfoSet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonProductInfoSet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonProductInfoSet.Image = global::SmoreControlLibrary.Properties.Resources.物料;
+            this.buttonProductInfoSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonProductInfoSet.Location = new System.Drawing.Point(0, 88);
+            this.buttonProductInfoSet.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonProductInfoSet.Name = "buttonProductInfoSet";
+            this.buttonProductInfoSet.Size = new System.Drawing.Size(169, 44);
+            this.buttonProductInfoSet.TabIndex = 7;
+            this.buttonProductInfoSet.Text = "设备信息";
+            this.buttonProductInfoSet.UseVisualStyleBackColor = false;
+            this.buttonProductInfoSet.Click += new System.EventHandler(this.buttonProductInfoSet_Click);
             // 
             // buttonSaveSet
             // 
@@ -186,9 +214,10 @@
             this.buttonSaveSet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.buttonSaveSet.Image = global::SmoreControlLibrary.Properties.Resources.保存;
             this.buttonSaveSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonSaveSet.Location = new System.Drawing.Point(0, 35);
+            this.buttonSaveSet.Location = new System.Drawing.Point(0, 44);
+            this.buttonSaveSet.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSaveSet.Name = "buttonSaveSet";
-            this.buttonSaveSet.Size = new System.Drawing.Size(127, 35);
+            this.buttonSaveSet.Size = new System.Drawing.Size(169, 44);
             this.buttonSaveSet.TabIndex = 3;
             this.buttonSaveSet.Text = "保存设置";
             this.buttonSaveSet.UseVisualStyleBackColor = false;
@@ -204,8 +233,9 @@
             this.buttonSystemSet.Image = global::SmoreControlLibrary.Properties.Resources.系统设置;
             this.buttonSystemSet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonSystemSet.Location = new System.Drawing.Point(0, 0);
+            this.buttonSystemSet.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSystemSet.Name = "buttonSystemSet";
-            this.buttonSystemSet.Size = new System.Drawing.Size(127, 35);
+            this.buttonSystemSet.Size = new System.Drawing.Size(169, 44);
             this.buttonSystemSet.TabIndex = 2;
             this.buttonSystemSet.Text = "系统设置";
             this.buttonSystemSet.UseVisualStyleBackColor = false;
@@ -215,21 +245,23 @@
             // 
             this.panelFormSetHome.BackColor = System.Drawing.Color.Silver;
             this.panelFormSetHome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFormSetHome.Location = new System.Drawing.Point(127, 31);
+            this.panelFormSetHome.Location = new System.Drawing.Point(169, 39);
+            this.panelFormSetHome.Margin = new System.Windows.Forms.Padding(4);
             this.panelFormSetHome.Name = "panelFormSetHome";
-            this.panelFormSetHome.Size = new System.Drawing.Size(903, 651);
+            this.panelFormSetHome.Size = new System.Drawing.Size(1204, 813);
             this.panelFormSetHome.TabIndex = 2;
             // 
             // FormSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1030, 682);
+            this.ClientSize = new System.Drawing.Size(1373, 852);
             this.Controls.Add(this.panelFormSetHome);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panelHead);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormSet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormSet";
@@ -254,5 +286,6 @@
         private SMButton smButton1;
         private SMButton smButton2;
         public System.Windows.Forms.Label lbl;
+        private System.Windows.Forms.Button btnAlgoSet;
     }
 }

@@ -195,6 +195,18 @@
       <DependentUpon>SMDataWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="SMForm\AccessOperate.cs" />
+    <Compile Include="SMForm\CfgItemTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SMForm\CfgItemTable.Designer.cs">
+      <DependentUpon>CfgItemTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SMForm\CheckBoxTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SMForm\CheckBoxTable.Designer.cs">
+      <DependentUpon>CheckBoxTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="SMForm\Database.cs" />
     <Compile Include="SMForm\FormChangePassword.cs">
       <SubType>Form</SubType>
@@ -225,6 +237,12 @@
     </Compile>
     <Compile Include="SMForm\FormSet.Designer.cs">
       <DependentUpon>FormSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SMForm\SMAlgoSet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SMForm\SMAlgoSet.Designer.cs">
+      <DependentUpon>SMAlgoSet.cs</DependentUpon>
     </Compile>
     <Compile Include="SMForm\SMCamSet.cs">
       <SubType>UserControl</SubType>
@@ -393,6 +411,12 @@
     <EmbeddedResource Include="SMData\SMDataWindow.resx">
       <DependentUpon>SMDataWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SMForm\CfgItemTable.resx">
+      <DependentUpon>CfgItemTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SMForm\CheckBoxTable.resx">
+      <DependentUpon>CheckBoxTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SMForm\FormChangePassword.resx">
       <DependentUpon>FormChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SMForm\FormSet.resx">
       <DependentUpon>FormSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SMForm\SMAlgoSet.resx">
+      <DependentUpon>SMAlgoSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SMForm\SMCamSet.resx">
       <DependentUpon>SMCamSet.cs</DependentUpon>

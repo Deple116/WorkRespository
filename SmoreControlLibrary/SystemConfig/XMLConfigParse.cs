@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenCvSharp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,8 +49,6 @@ namespace SmoreControlLibrary
                     }
                 }
             }
-
-
             if (PLC != null)
             {
                 Dictionary<string, string> plcNode = new Dictionary<string, string>();
@@ -149,12 +148,18 @@ namespace SmoreControlLibrary
         [XmlElement("PLC")]
         public PLCElement PLC { get; set;}
 
+        [XmlElement("Algo")]
+        public AlgoElement Algo { get; set; }
+
         [XmlElement("SaveImage")]
         public SaveImageElement SaveImage { get; set;}
         [XmlElement("SDK")]
         public SDKElement SDK { get; set;}
         [XmlElement("Device")]
         public DeviceElement Device { get; set; }
+
+        
+
         [XmlElement("SaveTime")]
         public SaveTimeElement SaveTime { get; set;}
 
@@ -211,6 +216,26 @@ namespace SmoreControlLibrary
             public string Value { get; set; }
 
         }
+
+        [XmlType("Algo")]
+        public class AlgoElement
+        {
+            [XmlElement("RunEnable")]
+            public bool RunEnable { get; set; }
+            [XmlElement("Item")]
+            public AlgoItem[] Items { get; set; }
+        }
+
+        [XmlType("AlgoItem")]
+        public class AlgoItem
+        {
+            [XmlAttribute("Name")]
+            public string Name { get; set; }
+            [XmlAttribute("Value")]
+            public string Value { get; set; }
+
+        }
+
 
         [XmlType("SaveImage")]
         public class SaveImageElement
@@ -282,6 +307,9 @@ namespace SmoreControlLibrary
             [XmlAttribute("DetectDate")]
             public string DetectDate { get; set; }
         }
+
+        
+
 
         [XmlType("SaveTime")]
         public class SaveTimeElement
