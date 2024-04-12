@@ -86,7 +86,7 @@ namespace SmoreVision.BusinessClass
                 Cycled = true;
                 while (Cycled)
                 {
-                    switch (m_CameraControl.CCDName)
+                    switch (m_halconImgProc.CCDName)
                     {
                         case "CCD1":
                             {

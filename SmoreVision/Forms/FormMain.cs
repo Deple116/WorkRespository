@@ -65,7 +65,6 @@ namespace SmoreVision
         private ActionRunThread[] m_ActionRunThread;
         private ConnectHeartbeatThread[] m_ConnectHeartbeatThreads;
         private AIRunThread[] m_AIRunThread=null;
-        private VimoManager m_AISDKManage;
         private SaveImageThread m_SaveImageThread;
         private SiemensPLCControl m_SiemensPLCControl;
 
@@ -161,7 +160,7 @@ namespace SmoreVision
             m_ConnectHeartbeatThreads = new ConnectHeartbeatThread[GlobalVariables.GConst.STATION_COUNT];
             m_AIRunThread = new AIRunThread[GlobalVariables.GConst.STATION_COUNT];
             m_SaveImageThread = new SaveImageThread(XMLConfig);
-            m_AISDKManage = new VimoSegmentManager();
+
             m_SiemensPLCControl = new SiemensPLCControl();
             smImageWindow1.ShowManualButton = true;
             //smImageWindow2.ShowManualButton = true;
@@ -400,31 +399,21 @@ namespace SmoreVision
         /// <param name="_taskName">CLS[进行分类算法推理]OCR[进行OCR算法推理]</param>
         private void SimplexTestTask(string _taskName)
         {
-            int returnValue = 0;
             m_SaveImage = new SaveImage();
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "请选择图片文件夹";
             dialog.Filter = "图片文件(*.jpg;*.png;*.bmp)|*.jpg;*.png;*.bmp;*.tif";
-            dialog.InitialDirectory = Application.StartupPath+"\\Algo";
+            // dialog.InitialDirectory = Application.StartupPath+"\\Algo";
+            dialog.InitialDirectory = XMLConfig.SaveImage.Items[2].Path;
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                // m_SaveImageThread.StartThread();
 
-                HObject halconImage = new HObject();
-                HOperatorSet.ReadImage(out halconImage, dialog.FileName);
-
-                List<string> listTemp=m_halconImgProc.yfReadImgFolder();
-
-                int indexof=listTemp.IndexOf(dialog.FileName);
-
-             
-                Mat mat = HalconToMat(m_halconImgProc.yfGetImg(indexof % 2 == 0 ? indexof+1: indexof));
-                //Mat mat = Cv2.ImRead(dialog.FileName, ImreadModes.Unchanged);
+                m_halconImgProc.SetImagesPath(GlobalVariables.StaticMethod.GetSpecPath(dialog.FileName));
+                Mat mat;// = HalconToMat(m_halconImgProc.yfGetGrayImg());
 
                 SMLogWindow.OutLog($"SimplexTestTask:path:{dialog.FileName}", Color.Green);
-                //Mat srcMat = mat.Clone();
                 string fileNameWithoutExtension = System.IO.Path.GetFileNameWithoutExtension(dialog.FileName);
-                if (mat != null)
+                //if (mat != null)
                 {
                     SimplexTask = Task.Factory.StartNew(() =>
                     {
@@ -434,7 +423,7 @@ namespace SmoreVision
                             case "CCD1":
                                 {
 
-                                    if(yfImgProc(indexof % 2 == 0 ? indexof + 1 : indexof))
+                                    if(yfImgProc())
                                     {
 
                                         mat = HalconToMat(m_halconImgProc.GetMaskImg(),false);
@@ -450,9 +439,6 @@ namespace SmoreVision
 
                                     //m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
                                     //m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
-
-
-                                    // AlgoProcess(mat);
                                 }
                                 break;
                             default:
@@ -469,13 +455,13 @@ namespace SmoreVision
         Dictionary<string, string> dicShowData = new Dictionary<string, string>();
         string stralgoRes = "";
         string NG_Algo = "";
-        private bool yfImgProc(int index)
+        private bool yfImgProc()
         {
             try
             {
-
+                
                 Dictionary<string, string> dicTemp = new Dictionary<string, string>();
-                if (m_halconImgProc.yfOfflineExcute(index))
+                if (m_halconImgProc.yfOfflineExcute())
                 {
                     dicTemp=m_halconImgProc.ImgProcess();
                     DataResProc(ref dicTemp);
@@ -622,81 +608,7 @@ namespace SmoreVision
 
         }
 
-        private void AlgoProcess(Mat mat)
-        {
-
-            //算法Run之前参数输入
-            Dictionary<string, DefectLimit> dicdefect = new Dictionary<string, DefectLimit>();
-
-            foreach (var temp in GlobalVariables.Variables.dicProduct)
-            {
-                dicdefect.Add(temp.Key, new DefectLimit() { Minval = int.Parse(temp.Value[0]), Maxval = int.Parse(temp.Value[1]) });
-            }
-
-
-            AlgoRunInput algoRunInput = new AlgoRunInput() { SourceImg = mat.Clone(), DicDefect = dicdefect, ShowMask = true };
-
-            if (GlobalVariables.Variables.bAlgo)//是否使用算法
-            {
-                returnValue = (int)m_AISDKManage.Run(algoRunInput, out AlgoRunOutput algorunOutput);
-
-                if (returnValue == ERR_FAILED)
-                {
-                    SMLogWindow.OutLog("算法推理失败.", Color.Red, bshow: true);
-                }
-                else
-                {
-                    SMLogWindow.OutLog($"算法推理成功:count:{algorunOutput.Dicdefect.Count}", Color.Green);
-                    // if (smImageWindow1.InvokeRequired)
-                    {
-                        if (algorunOutput.Dicdefect.Count < 1)
-                        {
-                            BeginInvoke(new Action<bool>(smImageWindow1.ResultShow), true);
-                            SMDataWindow.AddData(true);
-                            smImageWindow1.ImageShow(algorunOutput.mask);
-
-                            //存图
-                            m_SaveImage.stationName = "CCD1";
-                            m_SaveImage.picture = mat;
-                            m_SaveImage.result = true;
-                            m_SaveImage.mask = algorunOutput.mask;
-                            m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
-                            m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
-                        }
-                        else
-                        {
-                            BeginInvoke(new Action<bool>(smImageWindow1.ResultShow), false);
-                            SMDataWindow.AddData(false);
-                            smImageWindow1.ImageShow(algorunOutput.mask);
-
-                            //存图
-                            m_SaveImage.stationName = "CCD1";
-                            m_SaveImage.picture = mat;
-                            m_SaveImage.result = false;
-                            m_SaveImage.mask = algorunOutput.mask;
-                            m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
-                            m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
-                        }
-                    }
-
-                }
-
-            }
-            else
-            {
-                BeginInvoke(new Action<bool>(smImageWindow1.ResultShow), true);
-                SMDataWindow.AddData(true);
-                smImageWindow1.ImageShow(mat);
-
-                //存图
-                m_SaveImage.stationName = "CCD1";
-                m_SaveImage.picture = mat;
-                m_SaveImage.result = false;
-                m_SaveImage.mask = mat;
-                m_SaveImage.time = DateTime.Now.ToString(GlobalVariables.GConst.IMAGE_SAVE_BASE_TIME_FORMAT);
-                m_SaveImageThread.SaveImagePack_Buffer.Enqueue(m_SaveImage);
-            }
-        }
+       
 
         /// <summary>
         /// 手动推理整个文件夹中的图片
@@ -728,7 +640,7 @@ namespace SmoreVision
                             {
                                 case "TSTM":
                                     {
-                                        AlgoProcess(mat);
+                                        //AlgoProcess(mat);
                                     }
                                     break;
                                 default:
