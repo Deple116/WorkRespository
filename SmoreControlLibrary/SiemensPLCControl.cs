@@ -83,6 +83,7 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
+                if (m_Siemens==null) return ERROR_FAILED;
                 lock (objWrite)
                 {
                     OperateResult operateResult = m_Siemens.Write(_dbAddress, _result);
@@ -117,7 +118,8 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
-                OperateResult<bool> result = m_Siemens.ReadBool(_dbAddress);
+                OperateResult<bool> result=new OperateResult<bool>();
+                if (m_Siemens!=null) result= m_Siemens.ReadBool(_dbAddress);
                 return result.Content;
             }
             catch (Exception ex)
@@ -136,7 +138,9 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
-                OperateResult<ushort> result = m_Siemens.ReadUInt16(_dbAddress);
+                OperateResult<ushort> result = new OperateResult<ushort>();
+                if (m_Siemens!=null) result= m_Siemens.ReadUInt16(_dbAddress);
+
                 return result.Content;
             }
             catch (Exception ex)
@@ -155,7 +159,9 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
-                OperateResult<Byte> result = m_Siemens.ReadByte(_dbAddress);
+                OperateResult<Byte> result = new OperateResult<Byte>();
+                if (m_Siemens!=null) result= m_Siemens.ReadByte(_dbAddress);
+
                 return result.Content;
             }
             catch (Exception ex)
@@ -175,6 +181,7 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
+                if (m_Siemens==null) return ERROR_FAILED;
                 lock (objWrite)
                 {
                     OperateResult operateResult = m_Siemens.Write(_dbAddress, value);
@@ -210,6 +217,7 @@ namespace SmoreVision.HardwareControlClass
         {
             try
             {
+                if (m_Siemens==null) return new OperateResult<string>().Content;
                 OperateResult<string> result = m_Siemens.ReadString(_dbAddress, 16, Encoding.UTF8);
                 return result.Content;
             }

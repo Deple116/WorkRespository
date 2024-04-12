@@ -125,10 +125,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\Algo\Vimo\SmartMore.ViMo.Inference.dll</HintPath>
     </Reference>
-    <Reference Include="SmoreControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\bin\Debug\SmoreControlLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="SQLControlLibrary">
       <HintPath>..\DLL\SQL\SQLControlLibrary.dll</HintPath>
     </Reference>
@@ -252,6 +248,10 @@
     <ProjectReference Include="..\HalconAlgoCtrlLib\HalconAlgoCtrlLib.csproj">
       <Project>{6058993c-9f94-44b2-946a-138dc9f573dc}</Project>
       <Name>HalconAlgoCtrlLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmoreControlLibrary\SmoreControlLibrary.csproj">
+      <Project>{6b5da0c6-0901-43bf-ba08-d3863ab23063}</Project>
+      <Name>SmoreControlLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

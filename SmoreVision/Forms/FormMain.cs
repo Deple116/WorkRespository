@@ -82,7 +82,7 @@ namespace SmoreVision
         private FormProductInfo form_productinfo = new FormProductInfo();//数据统计界面(数据库)
         private ShowData smShowData=new ShowData();
 
-        TasControl iOControlClass = new TasControl();
+       
 
         HalcoImgProc m_halconImgProc = new HalcoImgProc();
 
@@ -843,13 +843,6 @@ namespace SmoreVision
 
         }
       
-        private void label2_Click(object sender, EventArgs e)
-        {
-            iOControlClass.SendCmd(1, false);
-            Thread.Sleep(50);
-            //通道,状态
-            iOControlClass.SendCmd(0, false);
-        }
 
         // 将Halcon的HObject转换为OpenCV的Mat
         static Mat HalconToMat(HObject halconImage,bool bGray=true)

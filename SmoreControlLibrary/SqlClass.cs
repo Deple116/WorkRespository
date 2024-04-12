@@ -36,7 +36,7 @@ namespace SmoreControlLibrary
             connectStrc.host = "localhost";
             connectStrc.port = 3306;
             connectStrc.username = "root";
-            connectStrc.password = "deple123";
+            connectStrc.password = "smore2021";
             connectStrc.database = "SmoreSqlite0818.db";
 
             imysql = new MySqlFactory().CreateSql();
@@ -86,7 +86,7 @@ namespace SmoreControlLibrary
                     bres = true;
                     break;
                 case EnumReturnVal.ERROR_EXIT:
-                    SMLogWindow.OutLog($"数据库{DataBaseName}:已存在", Color.Red, bshow: true);
+                    SMLogWindow.OutLog($"数据库{DataBaseName}:已存在", Color.Green, bshow: true);
                     bres = true;
                     break;
             }
