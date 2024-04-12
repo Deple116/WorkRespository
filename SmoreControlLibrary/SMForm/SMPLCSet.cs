@@ -48,20 +48,30 @@ namespace SmoreControlLibrary.SMForm
 
             ttIP.textBox1.Text = m_XMLConfigParse.PLC.IP;
             ttPort.textBox1.Text = m_XMLConfigParse.PLC.Port.ToString();
+
+            lbStart.Text = m_XMLConfigParse.PLC.Items[0].Name;
             ttStartAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[0].Address;
             ttStartVal.textBox1.Text = m_XMLConfigParse.PLC.Items[0].Value;
 
+            lbBackZero.Text = m_XMLConfigParse.PLC.Items[1].Name;
             ttCallZeroAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[1].Address;
             ttCallbackZeroVal.textBox1.Text = m_XMLConfigParse.PLC.Items[1].Value;
 
+            lbStop.Text = m_XMLConfigParse.PLC.Items[2].Name;
             ttStopAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[2].Address;
             ttStopVal.textBox1.Text = m_XMLConfigParse.PLC.Items[2].Value;
 
+            lbForward.Text = m_XMLConfigParse.PLC.Items[3].Name;
             ttForwardAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[3].Address;
             ttForWardVal.textBox1.Text = m_XMLConfigParse.PLC.Items[3].Value;
 
+            lbBackWard.Text = m_XMLConfigParse.PLC.Items[4].Name;
             ttBackwardAdr.textBox1.Text = m_XMLConfigParse.PLC.Items[4].Address;
             ttBackWardVal.textBox1.Text = m_XMLConfigParse.PLC.Items[4].Value;
+
+            lbReady.Text = m_XMLConfigParse.PLC.Items[5].Name;
+            ttReadyAddress.textBox1.Text = m_XMLConfigParse.PLC.Items[5].Address;
+            ttReadyVal.textBox1.Text = m_XMLConfigParse.PLC.Items[5].Value;
         }
 
         private int InitialConfigFile()
@@ -102,6 +112,9 @@ namespace SmoreControlLibrary.SMForm
 
                 m_XMLConfigParse.PLC.Items[4].Address = ttBackwardAdr.textBox1.Text;
                 m_XMLConfigParse.PLC.Items[4].Value = ttBackWardVal.textBox1.Text;
+
+                m_XMLConfigParse.PLC.Items[5].Address = ttReadyAddress.textBox1.Text;
+                m_XMLConfigParse.PLC.Items[5].Value = ttReadyVal.textBox1.Text;
 
 
                 XMLSerialize.SerializeToXml<XMLConfigParse>(ConfigFilePath, m_XMLConfigParse, ref ErrorInfo);

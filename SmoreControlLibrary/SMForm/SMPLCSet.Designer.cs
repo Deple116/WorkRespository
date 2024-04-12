@@ -72,6 +72,11 @@
             this.btnPLCDDisConnect = new SmoreControlLibrary.SMButton();
             this.smButton2 = new SmoreControlLibrary.SMButton();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbReady = new System.Windows.Forms.Label();
+            this.ttReadyAddress = new SmoreControlLibrary.SMForm.TextTable();
+            this.ttReadyVal = new SmoreControlLibrary.SMForm.TextTable();
+            this.btnReadyWD = new SmoreControlLibrary.SMButton();
+            this.btnReadRD = new SmoreControlLibrary.SMButton();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -85,8 +90,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(813, 35);
+            this.panel1.Size = new System.Drawing.Size(1084, 44);
             this.panel1.TabIndex = 2;
             // 
             // label1
@@ -94,9 +100,10 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(10, 9);
+            this.label1.Location = new System.Drawing.Point(13, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 17);
+            this.label1.Size = new System.Drawing.Size(67, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "PLC设置";
             // 
@@ -110,12 +117,13 @@
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.listBox1, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 35);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 44);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(813, 515);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1084, 644);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -156,8 +164,14 @@
             this.tableLayoutPanel2.Controls.Add(this.ttBackwardAdr, 1, 5);
             this.tableLayoutPanel2.Controls.Add(this.ttBackWardVal, 2, 5);
             this.tableLayoutPanel2.Controls.Add(this.ttStartAdr, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lbReady, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.ttReadyAddress, 1, 6);
+            this.tableLayoutPanel2.Controls.Add(this.ttReadyVal, 2, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnReadyWD, 3, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnReadRD, 4, 6);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 54);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 68);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 10;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -170,7 +184,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(400, 458);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(534, 572);
             this.tableLayoutPanel2.TabIndex = 0;
             this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
@@ -189,12 +203,13 @@
             this.btnBackwardRD.IsRadius = true;
             this.btnBackwardRD.IsShowRect = false;
             this.btnBackwardRD.IsShowTips = false;
-            this.btnBackwardRD.Location = new System.Drawing.Point(323, 228);
+            this.btnBackwardRD.Location = new System.Drawing.Point(429, 290);
+            this.btnBackwardRD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnBackwardRD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnBackwardRD.Name = "btnBackwardRD";
             this.btnBackwardRD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnBackwardRD.RectWidth = 1;
-            this.btnBackwardRD.Size = new System.Drawing.Size(74, 39);
+            this.btnBackwardRD.Size = new System.Drawing.Size(100, 47);
             this.btnBackwardRD.TabIndex = 22;
             this.btnBackwardRD.TabStop = false;
             this.btnBackwardRD.TipsText = "";
@@ -210,17 +225,17 @@
             this.btnBackwardWD.BtnImage = null;
             this.btnBackwardWD.BtnText = "执行";
             this.btnBackwardWD.ConerRadius = 15;
-            this.btnBackwardWD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnBackwardWD.FillColor = System.Drawing.Color.Transparent;
             this.btnBackwardWD.IsRadius = true;
             this.btnBackwardWD.IsShowRect = false;
             this.btnBackwardWD.IsShowTips = false;
-            this.btnBackwardWD.Location = new System.Drawing.Point(243, 228);
+            this.btnBackwardWD.Location = new System.Drawing.Point(323, 290);
+            this.btnBackwardWD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnBackwardWD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnBackwardWD.Name = "btnBackwardWD";
             this.btnBackwardWD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnBackwardWD.RectWidth = 1;
-            this.btnBackwardWD.Size = new System.Drawing.Size(74, 39);
+            this.btnBackwardWD.Size = new System.Drawing.Size(96, 46);
             this.btnBackwardWD.TabIndex = 21;
             this.btnBackwardWD.TabStop = false;
             this.btnBackwardWD.TipsText = "";
@@ -241,12 +256,13 @@
             this.btnForwardRD.IsRadius = true;
             this.btnForwardRD.IsShowRect = false;
             this.btnForwardRD.IsShowTips = false;
-            this.btnForwardRD.Location = new System.Drawing.Point(323, 183);
+            this.btnForwardRD.Location = new System.Drawing.Point(429, 233);
+            this.btnForwardRD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnForwardRD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnForwardRD.Name = "btnForwardRD";
             this.btnForwardRD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnForwardRD.RectWidth = 1;
-            this.btnForwardRD.Size = new System.Drawing.Size(74, 39);
+            this.btnForwardRD.Size = new System.Drawing.Size(100, 47);
             this.btnForwardRD.TabIndex = 20;
             this.btnForwardRD.TabStop = false;
             this.btnForwardRD.TipsText = "";
@@ -267,12 +283,13 @@
             this.btnForWardWD.IsRadius = true;
             this.btnForWardWD.IsShowRect = false;
             this.btnForWardWD.IsShowTips = false;
-            this.btnForWardWD.Location = new System.Drawing.Point(243, 183);
+            this.btnForWardWD.Location = new System.Drawing.Point(323, 233);
+            this.btnForWardWD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnForWardWD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnForWardWD.Name = "btnForWardWD";
             this.btnForWardWD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnForWardWD.RectWidth = 1;
-            this.btnForWardWD.Size = new System.Drawing.Size(74, 39);
+            this.btnForWardWD.Size = new System.Drawing.Size(96, 47);
             this.btnForWardWD.TabIndex = 19;
             this.btnForWardWD.TabStop = false;
             this.btnForWardWD.TipsText = "";
@@ -293,12 +310,13 @@
             this.btnStopRD.IsRadius = true;
             this.btnStopRD.IsShowRect = false;
             this.btnStopRD.IsShowTips = false;
-            this.btnStopRD.Location = new System.Drawing.Point(323, 138);
+            this.btnStopRD.Location = new System.Drawing.Point(429, 176);
+            this.btnStopRD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnStopRD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnStopRD.Name = "btnStopRD";
             this.btnStopRD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnStopRD.RectWidth = 1;
-            this.btnStopRD.Size = new System.Drawing.Size(74, 39);
+            this.btnStopRD.Size = new System.Drawing.Size(100, 47);
             this.btnStopRD.TabIndex = 18;
             this.btnStopRD.TabStop = false;
             this.btnStopRD.TipsText = "";
@@ -319,12 +337,13 @@
             this.btnStopWD.IsRadius = true;
             this.btnStopWD.IsShowRect = false;
             this.btnStopWD.IsShowTips = false;
-            this.btnStopWD.Location = new System.Drawing.Point(243, 138);
+            this.btnStopWD.Location = new System.Drawing.Point(323, 176);
+            this.btnStopWD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnStopWD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnStopWD.Name = "btnStopWD";
             this.btnStopWD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnStopWD.RectWidth = 1;
-            this.btnStopWD.Size = new System.Drawing.Size(74, 39);
+            this.btnStopWD.Size = new System.Drawing.Size(96, 47);
             this.btnStopWD.TabIndex = 17;
             this.btnStopWD.TabStop = false;
             this.btnStopWD.TipsText = "";
@@ -345,12 +364,13 @@
             this.btnCallZeroRD.IsRadius = true;
             this.btnCallZeroRD.IsShowRect = false;
             this.btnCallZeroRD.IsShowTips = false;
-            this.btnCallZeroRD.Location = new System.Drawing.Point(323, 93);
+            this.btnCallZeroRD.Location = new System.Drawing.Point(429, 119);
+            this.btnCallZeroRD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnCallZeroRD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnCallZeroRD.Name = "btnCallZeroRD";
             this.btnCallZeroRD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnCallZeroRD.RectWidth = 1;
-            this.btnCallZeroRD.Size = new System.Drawing.Size(74, 39);
+            this.btnCallZeroRD.Size = new System.Drawing.Size(100, 47);
             this.btnCallZeroRD.TabIndex = 16;
             this.btnCallZeroRD.TabStop = false;
             this.btnCallZeroRD.TipsText = "";
@@ -371,12 +391,13 @@
             this.btnCallZeroWD.IsRadius = true;
             this.btnCallZeroWD.IsShowRect = false;
             this.btnCallZeroWD.IsShowTips = false;
-            this.btnCallZeroWD.Location = new System.Drawing.Point(243, 93);
+            this.btnCallZeroWD.Location = new System.Drawing.Point(323, 119);
+            this.btnCallZeroWD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnCallZeroWD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnCallZeroWD.Name = "btnCallZeroWD";
             this.btnCallZeroWD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnCallZeroWD.RectWidth = 1;
-            this.btnCallZeroWD.Size = new System.Drawing.Size(74, 39);
+            this.btnCallZeroWD.Size = new System.Drawing.Size(96, 47);
             this.btnCallZeroWD.TabIndex = 15;
             this.btnCallZeroWD.TabStop = false;
             this.btnCallZeroWD.TipsText = "";
@@ -389,9 +410,10 @@
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Location = new System.Drawing.Point(163, 0);
+            this.label2.Location = new System.Drawing.Point(216, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 45);
+            this.label2.Size = new System.Drawing.Size(98, 57);
             this.label2.TabIndex = 14;
             this.label2.Text = "写入值";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -411,12 +433,13 @@
             this.btnStartRD.IsRadius = true;
             this.btnStartRD.IsShowRect = false;
             this.btnStartRD.IsShowTips = false;
-            this.btnStartRD.Location = new System.Drawing.Point(323, 48);
+            this.btnStartRD.Location = new System.Drawing.Point(429, 62);
+            this.btnStartRD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnStartRD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnStartRD.Name = "btnStartRD";
             this.btnStartRD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnStartRD.RectWidth = 1;
-            this.btnStartRD.Size = new System.Drawing.Size(74, 39);
+            this.btnStartRD.Size = new System.Drawing.Size(100, 47);
             this.btnStartRD.TabIndex = 13;
             this.btnStartRD.TabStop = false;
             this.btnStartRD.TipsText = "";
@@ -437,12 +460,13 @@
             this.btnStartWD.IsRadius = true;
             this.btnStartWD.IsShowRect = false;
             this.btnStartWD.IsShowTips = false;
-            this.btnStartWD.Location = new System.Drawing.Point(243, 48);
+            this.btnStartWD.Location = new System.Drawing.Point(323, 62);
+            this.btnStartWD.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnStartWD.MouseUpColor = System.Drawing.Color.Empty;
             this.btnStartWD.Name = "btnStartWD";
             this.btnStartWD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnStartWD.RectWidth = 1;
-            this.btnStartWD.Size = new System.Drawing.Size(74, 39);
+            this.btnStartWD.Size = new System.Drawing.Size(96, 47);
             this.btnStartWD.TabIndex = 12;
             this.btnStartWD.TabStop = false;
             this.btnStartWD.TipsText = "";
@@ -455,9 +479,10 @@
             this.lbBackWard.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbBackWard.ForeColor = System.Drawing.Color.Black;
             this.lbBackWard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbBackWard.Location = new System.Drawing.Point(3, 225);
+            this.lbBackWard.Location = new System.Drawing.Point(4, 285);
+            this.lbBackWard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbBackWard.Name = "lbBackWard";
-            this.lbBackWard.Size = new System.Drawing.Size(74, 45);
+            this.lbBackWard.Size = new System.Drawing.Size(98, 57);
             this.lbBackWard.TabIndex = 11;
             this.lbBackWard.Text = "反转";
             this.lbBackWard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -469,9 +494,10 @@
             this.lbForward.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbForward.ForeColor = System.Drawing.Color.Black;
             this.lbForward.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbForward.Location = new System.Drawing.Point(3, 180);
+            this.lbForward.Location = new System.Drawing.Point(4, 228);
+            this.lbForward.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbForward.Name = "lbForward";
-            this.lbForward.Size = new System.Drawing.Size(74, 45);
+            this.lbForward.Size = new System.Drawing.Size(98, 57);
             this.lbForward.TabIndex = 10;
             this.lbForward.Text = "正转";
             this.lbForward.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -483,9 +509,10 @@
             this.lbStop.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbStop.ForeColor = System.Drawing.Color.Black;
             this.lbStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbStop.Location = new System.Drawing.Point(3, 135);
+            this.lbStop.Location = new System.Drawing.Point(4, 171);
+            this.lbStop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbStop.Name = "lbStop";
-            this.lbStop.Size = new System.Drawing.Size(74, 45);
+            this.lbStop.Size = new System.Drawing.Size(98, 57);
             this.lbStop.TabIndex = 9;
             this.lbStop.Text = "停止";
             this.lbStop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -497,9 +524,10 @@
             this.lbBackZero.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbBackZero.ForeColor = System.Drawing.Color.Black;
             this.lbBackZero.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbBackZero.Location = new System.Drawing.Point(3, 90);
+            this.lbBackZero.Location = new System.Drawing.Point(4, 114);
+            this.lbBackZero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbBackZero.Name = "lbBackZero";
-            this.lbBackZero.Size = new System.Drawing.Size(74, 45);
+            this.lbBackZero.Size = new System.Drawing.Size(98, 57);
             this.lbBackZero.TabIndex = 8;
             this.lbBackZero.Text = "回零";
             this.lbBackZero.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -511,9 +539,10 @@
             this.lbStart.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbStart.ForeColor = System.Drawing.Color.Black;
             this.lbStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbStart.Location = new System.Drawing.Point(3, 45);
+            this.lbStart.Location = new System.Drawing.Point(4, 57);
+            this.lbStart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbStart.Name = "lbStart";
-            this.lbStart.Size = new System.Drawing.Size(74, 45);
+            this.lbStart.Size = new System.Drawing.Size(98, 57);
             this.lbStart.TabIndex = 7;
             this.lbStart.Text = "启动";
             this.lbStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -525,9 +554,10 @@
             this.lbReadData.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbReadData.ForeColor = System.Drawing.Color.Black;
             this.lbReadData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbReadData.Location = new System.Drawing.Point(323, 0);
+            this.lbReadData.Location = new System.Drawing.Point(428, 0);
+            this.lbReadData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbReadData.Name = "lbReadData";
-            this.lbReadData.Size = new System.Drawing.Size(74, 45);
+            this.lbReadData.Size = new System.Drawing.Size(102, 57);
             this.lbReadData.TabIndex = 6;
             this.lbReadData.Text = "读数据";
             this.lbReadData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -539,9 +569,10 @@
             this.lbWriteData.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbWriteData.ForeColor = System.Drawing.Color.Black;
             this.lbWriteData.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbWriteData.Location = new System.Drawing.Point(243, 0);
+            this.lbWriteData.Location = new System.Drawing.Point(322, 0);
+            this.lbWriteData.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbWriteData.Name = "lbWriteData";
-            this.lbWriteData.Size = new System.Drawing.Size(74, 45);
+            this.lbWriteData.Size = new System.Drawing.Size(98, 57);
             this.lbWriteData.TabIndex = 5;
             this.lbWriteData.Text = "写数据";
             this.lbWriteData.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -553,9 +584,10 @@
             this.lbAdress.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbAdress.ForeColor = System.Drawing.Color.Black;
             this.lbAdress.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbAdress.Location = new System.Drawing.Point(83, 0);
+            this.lbAdress.Location = new System.Drawing.Point(110, 0);
+            this.lbAdress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbAdress.Name = "lbAdress";
-            this.lbAdress.Size = new System.Drawing.Size(74, 45);
+            this.lbAdress.Size = new System.Drawing.Size(98, 57);
             this.lbAdress.TabIndex = 4;
             this.lbAdress.Text = "寄存器地址";
             this.lbAdress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -567,81 +599,102 @@
             this.lbl1.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lbl1.ForeColor = System.Drawing.Color.Black;
             this.lbl1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lbl1.Location = new System.Drawing.Point(3, 0);
+            this.lbl1.Location = new System.Drawing.Point(4, 0);
+            this.lbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(74, 45);
+            this.lbl1.Size = new System.Drawing.Size(98, 57);
             this.lbl1.TabIndex = 3;
             this.lbl1.Text = "\\";
             this.lbl1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ttStartVal
             // 
-            this.ttStartVal.Location = new System.Drawing.Point(163, 48);
+            this.ttStartVal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttStartVal.Location = new System.Drawing.Point(217, 62);
+            this.ttStartVal.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttStartVal.Name = "ttStartVal";
-            this.ttStartVal.Size = new System.Drawing.Size(74, 39);
+            this.ttStartVal.Size = new System.Drawing.Size(96, 47);
             this.ttStartVal.TabIndex = 24;
             // 
             // ttCallZeroAdr
             // 
-            this.ttCallZeroAdr.Location = new System.Drawing.Point(83, 93);
+            this.ttCallZeroAdr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttCallZeroAdr.Location = new System.Drawing.Point(111, 119);
+            this.ttCallZeroAdr.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttCallZeroAdr.Name = "ttCallZeroAdr";
-            this.ttCallZeroAdr.Size = new System.Drawing.Size(74, 39);
+            this.ttCallZeroAdr.Size = new System.Drawing.Size(96, 47);
             this.ttCallZeroAdr.TabIndex = 25;
             // 
             // ttCallbackZeroVal
             // 
-            this.ttCallbackZeroVal.Location = new System.Drawing.Point(163, 93);
+            this.ttCallbackZeroVal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttCallbackZeroVal.Location = new System.Drawing.Point(217, 119);
+            this.ttCallbackZeroVal.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttCallbackZeroVal.Name = "ttCallbackZeroVal";
-            this.ttCallbackZeroVal.Size = new System.Drawing.Size(74, 39);
+            this.ttCallbackZeroVal.Size = new System.Drawing.Size(96, 47);
             this.ttCallbackZeroVal.TabIndex = 26;
             // 
             // ttStopAdr
             // 
-            this.ttStopAdr.Location = new System.Drawing.Point(83, 138);
+            this.ttStopAdr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttStopAdr.Location = new System.Drawing.Point(111, 176);
+            this.ttStopAdr.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttStopAdr.Name = "ttStopAdr";
-            this.ttStopAdr.Size = new System.Drawing.Size(74, 39);
+            this.ttStopAdr.Size = new System.Drawing.Size(96, 47);
             this.ttStopAdr.TabIndex = 27;
             // 
             // ttStopVal
             // 
-            this.ttStopVal.Location = new System.Drawing.Point(163, 138);
+            this.ttStopVal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttStopVal.Location = new System.Drawing.Point(217, 176);
+            this.ttStopVal.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttStopVal.Name = "ttStopVal";
-            this.ttStopVal.Size = new System.Drawing.Size(74, 39);
+            this.ttStopVal.Size = new System.Drawing.Size(96, 47);
             this.ttStopVal.TabIndex = 28;
             // 
             // ttForwardAdr
             // 
-            this.ttForwardAdr.Location = new System.Drawing.Point(83, 183);
+            this.ttForwardAdr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttForwardAdr.Location = new System.Drawing.Point(111, 233);
+            this.ttForwardAdr.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttForwardAdr.Name = "ttForwardAdr";
-            this.ttForwardAdr.Size = new System.Drawing.Size(74, 39);
+            this.ttForwardAdr.Size = new System.Drawing.Size(96, 47);
             this.ttForwardAdr.TabIndex = 29;
             // 
             // ttForWardVal
             // 
-            this.ttForWardVal.Location = new System.Drawing.Point(163, 183);
+            this.ttForWardVal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttForWardVal.Location = new System.Drawing.Point(217, 233);
+            this.ttForWardVal.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttForWardVal.Name = "ttForWardVal";
-            this.ttForWardVal.Size = new System.Drawing.Size(74, 39);
+            this.ttForWardVal.Size = new System.Drawing.Size(96, 47);
             this.ttForWardVal.TabIndex = 30;
             // 
             // ttBackwardAdr
             // 
-            this.ttBackwardAdr.Location = new System.Drawing.Point(83, 228);
+            this.ttBackwardAdr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttBackwardAdr.Location = new System.Drawing.Point(111, 290);
+            this.ttBackwardAdr.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttBackwardAdr.Name = "ttBackwardAdr";
-            this.ttBackwardAdr.Size = new System.Drawing.Size(74, 39);
+            this.ttBackwardAdr.Size = new System.Drawing.Size(96, 47);
             this.ttBackwardAdr.TabIndex = 31;
             // 
             // ttBackWardVal
             // 
-            this.ttBackWardVal.Location = new System.Drawing.Point(163, 228);
+            this.ttBackWardVal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttBackWardVal.Location = new System.Drawing.Point(217, 290);
+            this.ttBackWardVal.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttBackWardVal.Name = "ttBackWardVal";
-            this.ttBackWardVal.Size = new System.Drawing.Size(74, 39);
+            this.ttBackWardVal.Size = new System.Drawing.Size(96, 47);
             this.ttBackWardVal.TabIndex = 32;
             // 
             // ttStartAdr
             // 
-            this.ttStartAdr.Location = new System.Drawing.Point(83, 48);
+            this.ttStartAdr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttStartAdr.Location = new System.Drawing.Point(111, 62);
+            this.ttStartAdr.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttStartAdr.Name = "ttStartAdr";
-            this.ttStartAdr.Size = new System.Drawing.Size(74, 39);
+            this.ttStartAdr.Size = new System.Drawing.Size(96, 47);
             this.ttStartAdr.TabIndex = 23;
             // 
             // tableLayoutPanel3
@@ -656,11 +709,12 @@
             this.tableLayoutPanel3.Controls.Add(this.ttPort, 3, 0);
             this.tableLayoutPanel3.Controls.Add(this.ttIP, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 4);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(400, 45);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(534, 56);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
             // label4
@@ -670,9 +724,10 @@
             this.label4.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label4.Location = new System.Drawing.Point(283, 0);
+            this.label4.Location = new System.Drawing.Point(377, 0);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 45);
+            this.label4.Size = new System.Drawing.Size(72, 56);
             this.label4.TabIndex = 34;
             this.label4.Text = "端口";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -684,9 +739,10 @@
             this.label3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Location = new System.Drawing.Point(3, 0);
+            this.label3.Location = new System.Drawing.Point(4, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 45);
+            this.label3.Size = new System.Drawing.Size(45, 56);
             this.label3.TabIndex = 33;
             this.label3.Text = "IP";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -694,17 +750,19 @@
             // ttPort
             // 
             this.ttPort.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ttPort.Location = new System.Drawing.Point(343, 3);
+            this.ttPort.Location = new System.Drawing.Point(458, 5);
+            this.ttPort.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttPort.Name = "ttPort";
-            this.ttPort.Size = new System.Drawing.Size(54, 39);
+            this.ttPort.Size = new System.Drawing.Size(71, 46);
             this.ttPort.TabIndex = 33;
             // 
             // ttIP
             // 
             this.ttIP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ttIP.Location = new System.Drawing.Point(43, 3);
+            this.ttIP.Location = new System.Drawing.Point(58, 5);
+            this.ttIP.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.ttIP.Name = "ttIP";
-            this.ttIP.Size = new System.Drawing.Size(234, 39);
+            this.ttIP.Size = new System.Drawing.Size(310, 46);
             this.ttIP.TabIndex = 33;
             // 
             // panel2
@@ -713,9 +771,10 @@
             this.panel2.Controls.Add(this.btnPLCDDisConnect);
             this.panel2.Controls.Add(this.smButton2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(409, 3);
+            this.panel2.Location = new System.Drawing.Point(546, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(401, 45);
+            this.panel2.Size = new System.Drawing.Size(534, 56);
             this.panel2.TabIndex = 3;
             // 
             // btnSaveConfig
@@ -733,12 +792,13 @@
             this.btnSaveConfig.IsRadius = true;
             this.btnSaveConfig.IsShowRect = false;
             this.btnSaveConfig.IsShowTips = false;
-            this.btnSaveConfig.Location = new System.Drawing.Point(148, 0);
+            this.btnSaveConfig.Location = new System.Drawing.Point(198, 0);
+            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnSaveConfig.MouseUpColor = System.Drawing.Color.Empty;
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnSaveConfig.RectWidth = 1;
-            this.btnSaveConfig.Size = new System.Drawing.Size(74, 45);
+            this.btnSaveConfig.Size = new System.Drawing.Size(99, 56);
             this.btnSaveConfig.TabIndex = 35;
             this.btnSaveConfig.TabStop = false;
             this.btnSaveConfig.TipsText = "";
@@ -759,12 +819,13 @@
             this.btnPLCDDisConnect.IsRadius = true;
             this.btnPLCDDisConnect.IsShowRect = false;
             this.btnPLCDDisConnect.IsShowTips = false;
-            this.btnPLCDDisConnect.Location = new System.Drawing.Point(74, 0);
+            this.btnPLCDDisConnect.Location = new System.Drawing.Point(99, 0);
+            this.btnPLCDDisConnect.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnPLCDDisConnect.MouseUpColor = System.Drawing.Color.Empty;
             this.btnPLCDDisConnect.Name = "btnPLCDDisConnect";
             this.btnPLCDDisConnect.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.btnPLCDDisConnect.RectWidth = 1;
-            this.btnPLCDDisConnect.Size = new System.Drawing.Size(74, 45);
+            this.btnPLCDDisConnect.Size = new System.Drawing.Size(99, 56);
             this.btnPLCDDisConnect.TabIndex = 33;
             this.btnPLCDDisConnect.TabStop = false;
             this.btnPLCDDisConnect.TipsText = "";
@@ -786,11 +847,12 @@
             this.smButton2.IsShowRect = false;
             this.smButton2.IsShowTips = false;
             this.smButton2.Location = new System.Drawing.Point(0, 0);
+            this.smButton2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.smButton2.MouseUpColor = System.Drawing.Color.Empty;
             this.smButton2.Name = "smButton2";
             this.smButton2.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.smButton2.RectWidth = 1;
-            this.smButton2.Size = new System.Drawing.Size(74, 45);
+            this.smButton2.Size = new System.Drawing.Size(99, 56);
             this.smButton2.TabIndex = 34;
             this.smButton2.TabStop = false;
             this.smButton2.TipsText = "";
@@ -800,20 +862,105 @@
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(409, 54);
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(546, 68);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(401, 458);
+            this.listBox1.Size = new System.Drawing.Size(534, 572);
             this.listBox1.TabIndex = 4;
+            // 
+            // lbReady
+            // 
+            this.lbReady.BackColor = System.Drawing.Color.Transparent;
+            this.lbReady.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbReady.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lbReady.ForeColor = System.Drawing.Color.Black;
+            this.lbReady.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbReady.Location = new System.Drawing.Point(4, 342);
+            this.lbReady.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbReady.Name = "lbReady";
+            this.lbReady.Size = new System.Drawing.Size(98, 57);
+            this.lbReady.TabIndex = 33;
+            this.lbReady.Text = "Ready";
+            this.lbReady.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ttReadyAddress
+            // 
+            this.ttReadyAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttReadyAddress.Location = new System.Drawing.Point(111, 347);
+            this.ttReadyAddress.Margin = new System.Windows.Forms.Padding(5);
+            this.ttReadyAddress.Name = "ttReadyAddress";
+            this.ttReadyAddress.Size = new System.Drawing.Size(96, 47);
+            this.ttReadyAddress.TabIndex = 34;
+            // 
+            // ttReadyVal
+            // 
+            this.ttReadyVal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttReadyVal.Location = new System.Drawing.Point(217, 347);
+            this.ttReadyVal.Margin = new System.Windows.Forms.Padding(5);
+            this.ttReadyVal.Name = "ttReadyVal";
+            this.ttReadyVal.Size = new System.Drawing.Size(96, 47);
+            this.ttReadyVal.TabIndex = 35;
+            // 
+            // btnReadyWD
+            // 
+            this.btnReadyWD.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnReadyWD.BackColorShow = false;
+            this.btnReadyWD.BtnBackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnReadyWD.BtnFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnReadyWD.BtnForeColor = System.Drawing.Color.Black;
+            this.btnReadyWD.BtnImage = null;
+            this.btnReadyWD.BtnText = "执行";
+            this.btnReadyWD.ConerRadius = 15;
+            this.btnReadyWD.FillColor = System.Drawing.Color.Transparent;
+            this.btnReadyWD.IsRadius = true;
+            this.btnReadyWD.IsShowRect = false;
+            this.btnReadyWD.IsShowTips = false;
+            this.btnReadyWD.Location = new System.Drawing.Point(323, 347);
+            this.btnReadyWD.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReadyWD.MouseUpColor = System.Drawing.Color.Empty;
+            this.btnReadyWD.Name = "btnReadyWD";
+            this.btnReadyWD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnReadyWD.RectWidth = 1;
+            this.btnReadyWD.Size = new System.Drawing.Size(96, 46);
+            this.btnReadyWD.TabIndex = 36;
+            this.btnReadyWD.TabStop = false;
+            this.btnReadyWD.TipsText = "";
+            // 
+            // btnReadRD
+            // 
+            this.btnReadRD.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnReadRD.BackColorShow = false;
+            this.btnReadRD.BtnBackColor = System.Drawing.SystemColors.ControlDark;
+            this.btnReadRD.BtnFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnReadRD.BtnForeColor = System.Drawing.Color.Black;
+            this.btnReadRD.BtnImage = null;
+            this.btnReadRD.BtnText = "执行";
+            this.btnReadRD.ConerRadius = 15;
+            this.btnReadRD.FillColor = System.Drawing.Color.Transparent;
+            this.btnReadRD.IsRadius = true;
+            this.btnReadRD.IsShowRect = false;
+            this.btnReadRD.IsShowTips = false;
+            this.btnReadRD.Location = new System.Drawing.Point(429, 347);
+            this.btnReadRD.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReadRD.MouseUpColor = System.Drawing.Color.Empty;
+            this.btnReadRD.Name = "btnReadRD";
+            this.btnReadRD.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.btnReadRD.RectWidth = 1;
+            this.btnReadRD.Size = new System.Drawing.Size(96, 46);
+            this.btnReadRD.TabIndex = 37;
+            this.btnReadRD.TabStop = false;
+            this.btnReadRD.TipsText = "";
             // 
             // SMPLCSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SMPLCSet";
-            this.Size = new System.Drawing.Size(813, 550);
+            this.Size = new System.Drawing.Size(1084, 688);
             this.Load += new System.EventHandler(this.SMPLCSet_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -871,5 +1018,10 @@
         private SMButton smButton2;
         private System.Windows.Forms.ListBox listBox1;
         private SMButton btnSaveConfig;
+        public System.Windows.Forms.Label lbReady;
+        private TextTable ttReadyAddress;
+        private TextTable ttReadyVal;
+        private SMButton btnReadyWD;
+        private SMButton btnReadRD;
     }
 }
